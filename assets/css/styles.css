@@ -1012,3 +1012,122 @@ strong { font-weight: 700; }
   .areas { grid-template-columns: 1fr; }
   .stats { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* --- Team roster (trainers page) ----------------------------------------- */
+.people { display: grid; gap: var(--gap); grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.person {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--paper);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease);
+}
+.person:hover { transform: translateY(-6px); box-shadow: 0 26px 50px -30px rgba(14, 29, 43, 0.45); }
+.person__photo {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(150deg, var(--ink) 0%, var(--ink-soft) 100%);
+  color: rgba(251, 248, 245, 0.9);
+}
+.person__photo svg { width: min(46%, 130px); height: auto; }
+.person__photo::after {
+  content: "";
+  position: absolute;
+  inset: auto -20% -45% -20%;
+  height: 70%;
+  background: radial-gradient(closest-side, var(--ember-tint), transparent 72%);
+  pointer-events: none;
+}
+.person__body { padding: 1.7rem 1.7rem 1.8rem; display: flex; flex-direction: column; flex: 1; }
+.person__name { margin-bottom: 0.4rem; }
+.person__role {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: 1rem;
+}
+.person__body > p { color: var(--ink-tint); font-size: 0.99rem; }
+.person details { padding-top: 1.4rem; }
+.person details:not([open]) { margin-top: auto; }
+.person summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  color: var(--ember-deep);
+  border-bottom: 1px solid var(--ember-tint);
+  padding-bottom: 0.2rem;
+  transition: border-color 0.3s var(--ease);
+}
+.person summary::-webkit-details-marker { display: none; }
+.person summary::after {
+  content: "+";
+  font-family: var(--display);
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: transform 0.35s var(--ease);
+}
+.person summary:hover { border-color: var(--ember); }
+.person details[open] summary::after { transform: rotate(45deg); }
+.person details[open] summary { margin-bottom: 1.1rem; }
+.person details .stack > * + * { margin-top: 0.9rem; }
+.person details p { font-size: 0.95rem; color: var(--ink-tint); }
+
+/* --- AI review summary --------------------------------------------------- */
+.summary {
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--ember);
+  border-radius: var(--radius-lg);
+  background: var(--paper);
+  padding: clamp(1.6rem, 3vw, 2.4rem);
+}
+.summary__label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: 1.3rem;
+}
+.summary__label svg { flex: none; }
+.summary ul { display: grid; gap: 0.85rem; }
+.summary li {
+  position: relative;
+  padding-left: 1.6rem;
+  font-size: 0.99rem;
+  color: var(--ink-tint);
+}
+.summary li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.68em;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--ember);
+}
+.summary__note { margin-top: 1.4rem; font-size: 0.82rem; color: var(--ink-tint); }
+
+/* --- Review extras ------------------------------------------------------- */
+.review__date { font-size: 0.78rem; color: var(--ink-tint); }
+
+@media (max-width: 1000px) {
+  .people { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 620px) {
+  .people { grid-template-columns: 1fr; }
+}
