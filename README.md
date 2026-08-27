@@ -10,7 +10,8 @@ folder with anything (`python3 -m http.server`, Netlify, Vercel, S3, cPanel).
 | File | Purpose |
 | --- | --- |
 | `index.html` | Home — positioning, program overview, process, behavior list, trainer intro, reviews, CTA |
-| `about.html` | Story, trainer bio, training principles, who we work with |
+| `about.html` | Who we are, training principles, All Pet Card financing, service area, owner bio, press |
+| `trainers.html` | Trainers &amp; staff roster with expandable bios, plus verified Google reviews |
 | `training.html` | The four programs in detail, behavior solutions, FAQ |
 | `videos.html` | Video gallery (placeholder thumbnails ready for embeds) |
 | `contact.html` | Contact details, evaluation request form, what to expect |
@@ -42,19 +43,26 @@ All colors, fonts and spacing live in the `:root` block at the top of
 
 ## Before this goes live
 
-1. **Photography.** The `.frame` blocks on `index.html` and `about.html` and the
-   `.video__thumb` blocks on `videos.html` are styled placeholders. Each is
-   marked with an HTML comment; swap in real images or video embeds.
-2. **Testimonials.** The three quotes on `index.html` are placeholder copy
+1. **Photography.** The `.frame` blocks on `index.html` and `about.html`, the
+   `.person__photo` blocks on `trainers.html` and the `.video__thumb` blocks on
+   `videos.html` are styled placeholders. Each is marked with an HTML comment;
+   swap in real headshots, images or video embeds.
+2. **Testimonials.** The four quotes on `index.html` are placeholder copy
    (marked with a comment). Replace them with verified Google/Facebook reviews
-   and real attribution before publishing.
+   and real attribution before publishing. The seven reviews on `trainers.html`
+   are client-supplied from the live Google profile; the two Google links on
+   that page point at `#` and need the real review URL. Note the review count
+   differs between pages — `trainers.html` says 260 (client copy), `index.html`
+   says 288+. Pick one number.
 3. **Contact form.** `contact.html` posts to `#`. Point the `action` at a form
    handler (Formspree, Jotform, Netlify Forms, etc.).
-4. **Business details.** Phone `629-772-3647` and the "by appointment" hours are
+4. **Good Morning Murfreesboro.** The `.video` block on `about.html` is a
+   placeholder; drop in the real interview embed when the URL is available.
+5. **Business details.** Phone `629-772-3647` and the "by appointment" hours are
    set throughout; confirm hours, and add an email address and street address if
    you want them public. The `LocalBusiness` JSON-LD block in `index.html` should
    be updated to match.
-5. **Canonical URLs.** Each page declares `https://talkingtailstn.com/<page>`.
+6. **Canonical URLs.** Each page declares `https://talkingtailstn.com/<page>`.
    Update if the site lives somewhere else.
 
 ## Accessibility & SEO notes
