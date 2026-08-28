@@ -13,6 +13,7 @@
   --ember:      #dc612f;
   --ember-deep: #b94a1e;
   --ember-tint: rgba(220, 97, 47, 0.10);
+  --ember-lift: #f0a077;          /* orange that holds up on the ink backgrounds */
 
   --cream:      #fbf8f5;
   --sand:       #f2ece5;
@@ -21,7 +22,7 @@
   --line:       rgba(14, 29, 43, 0.12);
   --line-light: rgba(251, 248, 245, 0.18);
 
-  --display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --display: "Geo", "Trebuchet MS", "Segoe UI", Helvetica, sans-serif;
   --body:    "Karla", "Helvetica Neue", Helvetica, sans-serif;
 
   --shell:   min(1180px, 100% - 3rem);
@@ -73,16 +74,18 @@ body::before {
 /* --- Typography --------------------------------------------------------- */
 h1, h2, h3, h4, .display {
   font-family: var(--display);
-  font-weight: 500;
-  line-height: 1.04;
-  letter-spacing: -0.022em;
-  font-variation-settings: "SOFT" 20, "WONK" 1, "opsz" 40;
+  font-weight: 400;            /* Geo ships a single weight — no synthetic bolding */
+  line-height: 1.08;
+  letter-spacing: 0.004em;     /* Geo is tightly drawn; it needs air, not negative tracking */
 }
+
+/* Large display type carries the brand orange. */
+h1, h2, .display { color: var(--ember); }
 
 h1 { font-size: clamp(2.9rem, 1.6rem + 5.4vw, 5.6rem); }
 h2 { font-size: clamp(2.15rem, 1.4rem + 3vw, 3.5rem); }
-h3 { font-size: clamp(1.3rem, 1.15rem + 0.6vw, 1.6rem); letter-spacing: -0.012em; }
-h4 { font-size: 1.1rem; letter-spacing: -0.005em; }
+h3 { font-size: clamp(1.3rem, 1.15rem + 0.6vw, 1.6rem); letter-spacing: 0.008em; }
+h4 { font-size: 1.1rem; letter-spacing: 0.02em; }
 
 .eyebrow {
   font-family: var(--body);
@@ -111,7 +114,7 @@ h4 { font-size: 1.1rem; letter-spacing: -0.005em; }
   color: var(--ink-tint);
 }
 
-.wonk { font-style: italic; color: var(--ember); font-variation-settings: "SOFT" 40, "WONK" 1, "opsz" 60; }
+.wonk { font-style: italic; color: var(--ember); }
 
 a { color: inherit; }
 p a { color: var(--ember-deep); text-underline-offset: 3px; text-decoration-thickness: 1px; }
@@ -144,6 +147,7 @@ strong { font-weight: 700; }
   color: var(--cream);
 }
 .dark .lede, .dark .muted { color: rgba(251, 248, 245, 0.68); }
+.dark h1, .dark h2, .dark .display { color: var(--ember-lift); }
 .dark .eyebrow { color: #f0a077; }
 .dark .eyebrow::before { background: #f0a077; }
 
@@ -236,10 +240,11 @@ strong { font-weight: 700; }
 .brand:hover .brand__mark { transform: rotate(-8deg); }
 .brand__name {
   font-family: var(--display);
-  font-size: 1.32rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-size: 1.42rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
   line-height: 1;
+  color: var(--ember);
 }
 .brand__sub {
   display: block;
@@ -335,10 +340,11 @@ strong { font-weight: 700; }
 .hero__stat b {
   font-family: var(--display);
   font-size: clamp(2rem, 1.5rem + 1.6vw, 2.9rem);
-  font-weight: 500;
+  font-weight: 400;
   display: block;
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: 0.005em;
+  color: var(--ember);
 }
 .hero__stat span { display: block; margin-top: 0.55rem; font-size: 0.88rem; color: var(--ink-tint); }
 
@@ -413,7 +419,7 @@ strong { font-weight: 700; }
 .card__index {
   font-family: var(--display);
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--ember);
   letter-spacing: 0.08em;
   margin-bottom: 1.5rem;
@@ -451,7 +457,7 @@ strong { font-weight: 700; }
 .feature__label {
   font-family: var(--display);
   font-size: clamp(1.7rem, 1.4rem + 1vw, 2.3rem);
-  letter-spacing: -0.02em;
+  letter-spacing: 0.005em;
 }
 .feature__label small {
   display: block;
@@ -522,8 +528,8 @@ strong { font-weight: 700; }
 .quote p {
   font-family: var(--display);
   font-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
-  line-height: 1.42;
-  letter-spacing: -0.015em;
+  line-height: 1.5;
+  letter-spacing: 0.006em;
 }
 .quote footer {
   margin-top: auto;
@@ -566,7 +572,7 @@ strong { font-weight: 700; }
   background: rgba(255, 255, 255, 0.09);
 }
 .band > * { position: relative; }
-.band h2 { max-width: 20ch; }
+.band h2 { max-width: 20ch; color: #fff; }   /* orange on orange would vanish */
 .band p { color: rgba(255, 255, 255, 0.85); max-width: 46ch; margin-top: 1.1rem; }
 .band .btn { --btn-bg: var(--ink); border-color: var(--ink); }
 .band .btn:hover { --btn-bg: #071018; border-color: #071018; }
@@ -721,7 +727,7 @@ strong { font-weight: 700; }
   gap: 2rem;
   font-family: var(--display);
   font-size: clamp(1.12rem, 1rem + 0.5vw, 1.38rem);
-  letter-spacing: -0.012em;
+  letter-spacing: 0.008em;
 }
 .faq summary::-webkit-details-marker { display: none; }
 .faq summary::after {
@@ -995,11 +1001,11 @@ strong { font-weight: 700; }
 .stats b {
   display: block;
   font-family: var(--display);
-  font-weight: 500;
+  font-weight: 400;
   font-size: clamp(2.4rem, 1.6rem + 2.4vw, 3.4rem);
   line-height: 1;
   color: var(--ember);
-  letter-spacing: -0.03em;
+  letter-spacing: 0.005em;
 }
 .stats span {
   display: block;
