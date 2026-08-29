@@ -26,6 +26,34 @@ assets/js/main.js       mobile nav, sticky-header hairline, scroll reveals
 Everything degrades gracefully: with JavaScript disabled the nav collapses to a
 plain list and all content is visible (no reveal animations).
 
+## Photography
+
+Five photos live in `assets/` and are placed like this:
+
+| Photo | Where it appears |
+| --- | --- |
+| `Hybrid-Training-Program.avif` | Home "Hybrid Training" card &middot; `training.html#private` &middot; About intro |
+| `Puppy-Lesson.webp` | Home "Puppy Training" card &middot; `training.html#puppy` &middot; Contact "what to expect" |
+| `Board-Train.avif` | Home "Board &amp; Train" card &middot; `training.html#obedience` |
+| `Group-Class.avif` | Home "Group Classes" card &middot; `training.html#group` |
+| `why-us.webp` | Home "Our story" |
+
+Four CSS helpers in `styles.css` (under *Photography*) carry all of it:
+
+- `.photo` &mdash; the real-image counterpart to `.frame`: fixed ratio, rounded
+  corners, `object-fit: cover`. Modifiers `--wide` (16/10), `--square`,
+  `--tall`. `.photo__caption` sits on a gradient scrim so it reads over any
+  image.
+- `.photo-plain` &mdash; for a photo that arrives with its own border or matte
+  baked into the file (`why-us.webp`), so it gets no frame of ours.
+- `.card__photo` &mdash; full-bleed lid on a `.card`, cancelling the card's own
+  padding via the `--card-pad` variable. Scales gently on card hover.
+- `.feature__photo` &mdash; photo in the narrow label column of a `.feature`
+  block, capped at 420px once the block stacks on narrow screens.
+
+Every `<img>` carries `alt`, intrinsic `width`/`height` (so nothing shifts as
+images load), `loading="lazy"` and `decoding="async"`.
+
 ## Brand
 
 | Token | Value | Used for |
@@ -43,10 +71,25 @@ All colors, fonts and spacing live in the `:root` block at the top of
 
 ## Before this goes live
 
-1. **Photography.** The `.frame` blocks on `index.html` and `about.html`, the
-   `.person__photo` blocks on `trainers.html` and the `.video__thumb` blocks on
-   `videos.html` are styled placeholders. Each is marked with an HTML comment;
-   swap in real headshots, images or video embeds.
+1. **Photography.** The five photos in `assets/` are now placed across the site
+   (see *Photography* below). Still placeholders: the `.frame` block on
+   `about.html` (owner headshot), the `.person__photo` blocks on
+   `trainers.html` and the `.video__thumb` blocks on `videos.html`. Each is
+   marked with an HTML comment; swap in real headshots, images or embeds.
+   Three things to check before launch:
+   - `Group-Class.avif` has **"SIT MEANS SIT DOG TRAINING"** legible on the
+     picnic table. That brand appears nowhere else on this site — crop it out,
+     or replace the photo, unless the association is intentional.
+   - `Board-Train.avif` (terrier in sunglasses at an airport) reads as stock
+     rather than as Talking Tails' own work, and is the smallest file at
+     598&times;446. A real board-and-train photo would carry more weight.
+   - `Puppy-Lesson.webp` is **619&nbsp;KB** for a 940&times;701 image — it looks
+     lossless. Re-encoding at WebP q85 brings it to ~96&nbsp;KB with no visible
+     loss. It appears on three pages, so this is the single biggest page-weight
+     win available. `why-us.webp` (307&nbsp;KB, has transparency) drops to
+     ~30&nbsp;KB the same way. Source files were left untouched.
+   - The red matte baked into `why-us.webp` is a harder red than the brand
+     `--ember` (`#f26224`). Fine as-is, but it is not a palette colour.
 2. **Testimonials.** The four quotes on `index.html` are placeholder copy
    (marked with a comment). Replace them with verified Google/Facebook reviews
    and real attribution before publishing. The seven reviews on `trainers.html`
