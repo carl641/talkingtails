@@ -378,7 +378,8 @@ strong { font-weight: 700; }
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  padding: clamp(1.75rem, 3vw, 2.4rem);
+  --card-pad: clamp(1.75rem, 3vw, 2.4rem);
+  padding: var(--card-pad);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -616,6 +617,72 @@ strong { font-weight: 700; }
   text-transform: uppercase;
 }
 
+/* --- Photography -------------------------------------------------------- */
+/* .photo is the real-image counterpart to .frame above: same corner radius,
+   same fixed ratio, image cropped to fill so a mixed bag of source aspect
+   ratios still lines up on a grid. */
+.photo {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--sand);
+  aspect-ratio: 4 / 5;
+}
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.photo--wide   { aspect-ratio: 16 / 10; }
+.photo--square { aspect-ratio: 1 / 1; }
+.photo--tall   { aspect-ratio: 3 / 4; }
+
+/* Caption sits on a scrim so it stays readable over any photo. */
+.photo__caption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 3.5rem 1.5rem 1.35rem;
+  background: linear-gradient(to top, rgba(15, 29, 43, 0.78), rgba(15, 29, 43, 0));
+  color: rgba(251, 248, 245, 0.88);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* A photo that arrives with its own border/matte baked into the file needs no
+   frame of ours — just size it and let the transparency show through. */
+.photo-plain {
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+}
+
+/* Photo lid on a .card. Bleeds to the card edge by cancelling the card's
+   padding, so it needs .card's own padding value as a variable. */
+.card__photo {
+  margin: calc(var(--card-pad) * -1) calc(var(--card-pad) * -1) var(--card-pad);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--sand);
+}
+.card__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease);
+}
+.card:hover .card__photo img { transform: scale(1.05); }
+
+/* Photo in the narrow label column of a .feature block. */
+.feature__photo {
+  margin-top: 1.75rem;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--sand);
+}
+.feature__photo img { width: 100%; height: 100%; object-fit: cover; }
+
 /* --- Video cards -------------------------------------------------------- */
 .video {
   border: 1px solid var(--line);
@@ -852,6 +919,7 @@ strong { font-weight: 700; }
   .masthead__cta .phone-link span { display: none; }
   .masthead__cta .btn { display: none; }
   .feature { grid-template-columns: 1fr; }
+  .feature__photo { max-width: 420px; }
   .step { grid-template-columns: 3rem minmax(0, 1fr); }
   .step p { grid-column: 2; }
   :root { --masthead: 88px; }
