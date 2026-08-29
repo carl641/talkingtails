@@ -28,17 +28,28 @@ plain list and all content is visible (no reveal animations).
 
 ## Photography
 
-Five photos live in `assets/` and are placed like this:
+Six photos live in `assets/` and are placed like this:
 
 | Photo | Where it appears |
 | --- | --- |
+| `dogfield.jpg` | Home hero &mdash; full-bleed background |
 | `Hybrid-Training-Program.avif` | Home "Hybrid Training" card &middot; `training.html#private` &middot; About intro |
 | `Puppy-Lesson.webp` | Home "Puppy Training" card &middot; `training.html#puppy` &middot; Contact "what to expect" |
 | `Board-Train.avif` | Home "Board &amp; Train" card &middot; `training.html#obedience` |
 | `Group-Class.avif` | Home "Group Classes" card &middot; `training.html#group` |
 | `why-us.webp` | Home "Our story" |
 
-Four CSS helpers in `styles.css` (under *Photography*) carry all of it:
+The hero treatment lives in `styles.css` under *Photo hero*, entirely scoped to
+`.hero--photo` &mdash; the plain `.hero` rules are untouched, so the photo hero can
+be lifted out by deleting that one block and the `hero--photo` class plus the
+`<img class="hero__bg">` on `index.html`. It layers the photo (`z-index: 0`), a
+scrim (`1`) and the copy (`2`); the z-indexes are load-bearing, because the
+`::before` scrim precedes the `<img>` in the DOM and would otherwise paint
+underneath it. The scrim is weighted to the left so the copy stays legible while
+the dog sits in open light, and the stat panel gets a translucent surface of its
+own rather than darkening the whole photo to suit it.
+
+Four more CSS helpers (under *Photography*) carry the rest:
 
 - `.photo` &mdash; the real-image counterpart to `.frame`: fixed ratio, rounded
   corners, `object-fit: cover`. Modifiers `--wide` (16/10), `--square`,
@@ -83,6 +94,12 @@ All colors, fonts and spacing live in the `:root` block at the top of
    - `Board-Train.avif` (terrier in sunglasses at an airport) reads as stock
      rather than as Talking Tails' own work, and is the smallest file at
      598&times;446. A real board-and-train photo would carry more weight.
+   - `dogfield.jpg` is **3.6&nbsp;MB** at 2816&times;1536, and as the hero
+     background it is the homepage's largest-contentful-paint image &mdash; the
+     one file where weight costs the most. Resized to 1920px wide it is
+     ~395&nbsp;KB as JPEG q82 or ~317&nbsp;KB as WebP; at 2400px, ~575&nbsp;KB
+     / ~438&nbsp;KB. Any of those is a 6&ndash;11&times; saving with nothing
+     visible given up at real display sizes.
    - `Puppy-Lesson.webp` is **619&nbsp;KB** for a 940&times;701 image — it looks
      lossless. Re-encoding at WebP q85 brings it to ~96&nbsp;KB with no visible
      loss. It appears on three pages, so this is the single biggest page-weight
