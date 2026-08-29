@@ -22,8 +22,9 @@
   --line:       rgba(15, 29, 43, 0.12);
   --line-light: rgba(251, 248, 245, 0.18);
 
-  --display: "Geo", "Trebuchet MS", "Segoe UI", Helvetica, sans-serif;
-  --body:    "Karla", "Helvetica Neue", Helvetica, sans-serif;
+  --display: "Karla", Arial, "Helvetica Neue", Helvetica, sans-serif;  /* the logo's "Talking" tier */
+  --accent:  "Geo", "Trebuchet MS", Arial, sans-serif;                 /* the logo's "TAILS" tier */
+  --body:    "Karla", Arial, "Helvetica Neue", Helvetica, sans-serif;
 
   --masthead: 108px;       /* tall enough for the stacked logo lockup */
   --shell:   min(1180px, 100% - 3rem);
@@ -75,18 +76,26 @@ body::before {
 /* --- Typography --------------------------------------------------------- */
 h1, h2, h3, h4, .display {
   font-family: var(--display);
-  font-weight: 400;            /* Geo ships a single weight — no synthetic bolding */
-  line-height: 1.08;
-  letter-spacing: 0.004em;     /* Geo is tightly drawn; it needs air, not negative tracking */
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.018em;
+  color: var(--ink);
 }
 
-/* Large display type carries the brand orange. */
-h1, h2, .display { color: var(--ember); }
+/* The emphasised phrase in a heading takes the logo's "TAILS" treatment:
+   the squared face, in orange, against the plain navy of the rest. */
+.wonk {
+  font-family: var(--accent);
+  font-weight: 400;            /* Geo ships a single weight — no synthetic bolding */
+  font-style: normal;
+  color: var(--ember);
+  letter-spacing: 0.005em;
+}
 
-h1 { font-size: clamp(2.9rem, 1.6rem + 5.4vw, 5.6rem); }
-h2 { font-size: clamp(2.15rem, 1.4rem + 3vw, 3.5rem); }
-h3 { font-size: clamp(1.3rem, 1.15rem + 0.6vw, 1.6rem); letter-spacing: 0.008em; }
-h4 { font-size: 1.1rem; letter-spacing: 0.02em; }
+h1 { font-size: clamp(2.5rem, 1.5rem + 4.1vw, 4.35rem); }
+h2 { font-size: clamp(2rem, 1.35rem + 2.5vw, 3.1rem); }
+h3 { font-size: clamp(1.3rem, 1.15rem + 0.6vw, 1.6rem); letter-spacing: -0.012em; }
+h4 { font-size: 1.1rem; letter-spacing: -0.005em; }
 
 .eyebrow {
   font-family: var(--body);
@@ -114,8 +123,6 @@ h4 { font-size: 1.1rem; letter-spacing: 0.02em; }
   line-height: 1.62;
   color: var(--ink-tint);
 }
-
-.wonk { font-style: italic; color: var(--ember); }
 
 a { color: inherit; }
 p a { color: var(--ember-deep); text-underline-offset: 3px; text-decoration-thickness: 1px; }
@@ -148,7 +155,8 @@ strong { font-weight: 700; }
   color: var(--cream);
 }
 .dark .lede, .dark .muted { color: rgba(251, 248, 245, 0.68); }
-.dark h1, .dark h2, .dark .display { color: var(--ember-lift); }
+.dark h1, .dark h2, .dark h3, .dark h4, .dark .display { color: var(--cream); }
+.dark .wonk { color: var(--ember-lift); }
 .dark .eyebrow { color: #f0a077; }
 .dark .eyebrow::before { background: #f0a077; }
 
@@ -317,7 +325,7 @@ strong { font-weight: 700; }
 }
 .hero__stat + .hero__stat { margin-top: 2.25rem; padding-top: 2.25rem; border-top: 1px solid var(--line); }
 .hero__stat b {
-  font-family: var(--display);
+  font-family: var(--accent);
   font-size: clamp(2rem, 1.5rem + 1.6vw, 2.9rem);
   font-weight: 400;
   display: block;
@@ -396,7 +404,7 @@ strong { font-weight: 700; }
 .card h3 { margin-bottom: 0.85rem; }
 .card p { color: var(--ink-tint); font-size: 0.99rem; }
 .card__index {
-  font-family: var(--display);
+  font-family: var(--accent);
   font-size: 0.9rem;
   font-weight: 400;
   color: var(--ember);
@@ -436,7 +444,8 @@ strong { font-weight: 700; }
 .feature__label {
   font-family: var(--display);
   font-size: clamp(1.7rem, 1.4rem + 1vw, 2.3rem);
-  letter-spacing: 0.005em;
+  font-weight: 700;
+  letter-spacing: -0.018em;
 }
 .feature__label small {
   display: block;
@@ -473,7 +482,7 @@ strong { font-weight: 700; }
 .step:last-child { border-bottom: 1px solid var(--line-light); }
 .step::before {
   content: counter(step, decimal-leading-zero);
-  font-family: var(--display);
+  font-family: var(--accent);
   font-size: 1.05rem;
   color: #f0a077;
   letter-spacing: 0.1em;
@@ -508,7 +517,7 @@ strong { font-weight: 700; }
   font-family: var(--display);
   font-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
   line-height: 1.5;
-  letter-spacing: 0.006em;
+  letter-spacing: -0.008em;
 }
 .quote footer {
   margin-top: auto;
@@ -520,7 +529,7 @@ strong { font-weight: 700; }
   color: var(--ink-tint);
 }
 .quote__mark {
-  font-family: var(--display);
+  font-family: var(--accent);
   font-size: 3rem;
   line-height: 0.6;
   color: var(--ember);
@@ -551,7 +560,8 @@ strong { font-weight: 700; }
   background: rgba(255, 255, 255, 0.09);
 }
 .band > * { position: relative; }
-.band h2 { max-width: 20ch; color: #fff; }   /* orange on orange would vanish */
+.band h2 { max-width: 20ch; color: #fff; }
+.band .wonk { color: var(--ink); }   /* orange on orange would vanish */
 .band p { color: rgba(255, 255, 255, 0.85); max-width: 46ch; margin-top: 1.1rem; }
 .band .btn { --btn-bg: var(--ink); border-color: var(--ink); }
 .band .btn:hover { --btn-bg: #071018; border-color: #071018; }
@@ -706,7 +716,8 @@ strong { font-weight: 700; }
   gap: 2rem;
   font-family: var(--display);
   font-size: clamp(1.12rem, 1rem + 0.5vw, 1.38rem);
-  letter-spacing: 0.008em;
+  font-weight: 700;
+  letter-spacing: -0.012em;
 }
 .faq summary::-webkit-details-marker { display: none; }
 .faq summary::after {
@@ -939,7 +950,7 @@ strong { font-weight: 700; }
   color: #fff;
   display: grid;
   place-items: center;
-  font-family: var(--display);
+  font-family: var(--accent);
   font-size: 1.15rem;
 }
 .review__name { font-weight: 700; line-height: 1.25; }
@@ -984,7 +995,7 @@ strong { font-weight: 700; }
 }
 .stats b {
   display: block;
-  font-family: var(--display);
+  font-family: var(--accent);
   font-weight: 400;
   font-size: clamp(2.4rem, 1.6rem + 2.4vw, 3.4rem);
   line-height: 1;
