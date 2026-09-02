@@ -14,8 +14,7 @@ folder with anything (`python3 -m http.server`, Netlify, Vercel, S3, cPanel).
 | `trainers.html` | Trainers &amp; staff roster with expandable bios, plus verified Google reviews |
 | `training.html` | The four programs in detail, behavior solutions, FAQ |
 | `videos.html` | Video gallery (placeholder thumbnails ready for embeds) |
-| `contact.html` | Contact details, embedded evaluation request form, what to expect |
-| `quiz.html` | Embedded program-match quiz (survey), what happens after |
+| `contact.html` | Contact details, evaluation request form, what to expect |
 
 Shared assets:
 
@@ -115,14 +114,8 @@ All colors, fonts and spacing live in the `:root` block at the top of
    that page point at `#` and need the real review URL. Note the review count
    differs between pages — `trainers.html` says 260 (client copy), `index.html`
    says 288+. Pick one number.
-3. **Hosted embeds.** The contact form (`contact.html`) and the program quiz
-   (`quiz.html`) are iframes served from `links.k9-dynamics.com`, each followed
-   by `form_embed.js`, which resizes the frame as the visitor moves through it.
-   The CSS `min-height` on `.embed--form` / `.embed--survey` is the pre-script
-   fallback, so update it if either form's length changes materially. Both
-   embeds carry `data-cookie-consent="true"`. If an embed fails to load, the
-   phone-number fallback below it is all the visitor gets — worth re-checking
-   after any change on the k9-dynamics side.
+3. **Contact form.** `contact.html` posts to `#`. Point the `action` at a form
+   handler (Formspree, Jotform, Netlify Forms, etc.).
 4. **Good Morning Murfreesboro.** The `.video` block on `about.html` is a
    placeholder; drop in the real interview embed when the URL is available.
 5. **Business details.** Phone `629-772-3647` and the "by appointment" hours are
