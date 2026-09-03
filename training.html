@@ -80,6 +80,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a class="btn" href="contact.html">Book a free evaluation
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
+        <a class="btn btn--ghost" href="quiz.html">Take the Free Assessment Quiz</a>
         <a class="btn btn--ghost" href="tel:+16297723647">Call 629-772-3647</a>
       </div>
     </div>
@@ -270,10 +271,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="band reveal">
         <div>
           <h2>Not sure which program fits?</h2>
-          <p>That's exactly what the free evaluation is for. Tell us what's happening and we'll tell you what we'd do about it.</p>
+          <p>Take the free assessment quiz &mdash; two minutes of questions about your dog and we'll tell you where we'd start. Or skip ahead and book the evaluation.</p>
         </div>
         <div class="btn-row">
-          <a class="btn" href="contact.html">Book the evaluation</a>
+          <a class="btn" href="quiz.html">Take the Free Assessment Quiz</a>
+          <a class="btn btn--ghost" href="contact.html">Book the evaluation</a>
           <a class="btn btn--ghost" href="tel:+16297723647">Call 629-772-3647</a>
         </div>
       </div>
@@ -303,6 +305,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li><a href="trainers.html">Trainers &amp; staff</a></li>
           <li><a href="training.html">Training programs</a></li>
           <li><a href="videos.html">Videos</a></li>
+          <li><a href="quiz.html">Free Assessment Quiz</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
@@ -329,6 +332,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
+    <div class="footer__subscribe">
+      <div>
+        <h4>Newsletter</h4>
+        <p>Training tips, class dates and the occasional very good dog &mdash; straight to your inbox. No spam, unsubscribe any time.</p>
+      </div>
+      <button class="btn" type="button" data-newsletter-open>Subscribe
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+
     <div class="footer__bottom">
       <span>&copy; <span id="year">2026</span> Talking Tails Dog Training. All rights reserved.</span>
       <span>Murfreesboro &middot; Smyrna &middot; Christiana &middot; Rockvale</span>
@@ -336,10 +349,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 
-<script src="assets/js/main.js" defer></script>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+<dialog class="modal" id="newsletter" aria-labelledby="newsletter-title">
+  <div class="modal__head">
+    <div>
+      <h3 id="newsletter-title">Join the newsletter</h3>
+      <p>Training tips and class dates from the Talking Tails team.</p>
+    </div>
+    <button class="modal__close" type="button" data-newsletter-close aria-label="Close newsletter signup">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <iframe class="embed__frame"
+          src="https://links.talkingtailsdogtraining.com/widget/form/ty8lF2uh9sbTtyc4VsZi"
+          id="inline-ty8lF2uh9sbTtyc4VsZi"
+          loading="lazy"
+          data-layout="{'id':'INLINE'}"
+          data-trigger-type="alwaysShow"
+          data-trigger-value=""
+          data-activation-type="alwaysActivated"
+          data-activation-value=""
+          data-deactivation-type="neverDeactivate"
+          data-deactivation-value=""
+          data-form-name="Newsletter Form"
+          data-height="400"
+          data-layout-iframe-id="inline-ty8lF2uh9sbTtyc4VsZi"
+          data-form-id="ty8lF2uh9sbTtyc4VsZi"
+          data-cookie-consent="true"
+          data-cookie-consent-provider="auto"
+          title="Newsletter Form"></iframe>
+</dialog>
+
 
 <script src="assets/js/main.js" defer></script>
 <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+<!-- Sizes the hosted form and survey frames as visitors move through them -->
+<script src="https://links.talkingtailsdogtraining.com/js/form_embed.js" defer></script>
 </body>
 </html>

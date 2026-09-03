@@ -15,12 +15,14 @@ folder with anything (`python3 -m http.server`, Netlify, Vercel, S3, cPanel).
 | `training.html` | The four programs in detail, behavior solutions, FAQ |
 | `videos.html` | Video gallery (placeholder thumbnails ready for embeds) |
 | `contact.html` | Contact details, evaluation request form, what to expect |
+| `quiz.html` | Free Assessment Quiz — hosted survey that recommends a program |
 
 Shared assets:
 
 ```
 assets/css/styles.css   all styling, design tokens at the top
-assets/js/main.js       mobile nav, sticky-header hairline, scroll reveals
+assets/js/main.js       mobile nav, sticky-header hairline, scroll reveals,
+                        newsletter dialog
 ```
 
 Everything degrades gracefully: with JavaScript disabled the nav collapses to a
@@ -114,8 +116,19 @@ All colors, fonts and spacing live in the `:root` block at the top of
    that page point at `#` and need the real review URL. Note the review count
    differs between pages — `trainers.html` says 260 (client copy), `index.html`
    says 288+. Pick one number.
-3. **Contact form.** `contact.html` posts to `#`. Point the `action` at a form
-   handler (Formspree, Jotform, Netlify Forms, etc.).
+3. **Hosted forms.** Three embeds are served from
+   `links.talkingtailsdogtraining.com` and sized by its `form_embed.js`, which
+   every page loads at the end of `<body>`:
+
+   | Embed | ID | Where |
+   | --- | --- | --- |
+   | New Contact Form | `wGkYu7T4TZUIMgLc8u9G` | `index.html` (`#evaluation`), `contact.html` |
+   | Free Assessment Quiz (survey) | `1FRYajBA2KiUE9K7U6gh` | `quiz.html` |
+   | Newsletter Form | `ty8lF2uh9sbTtyc4VsZi` | footer dialog, every page |
+
+   The `.embed--form` / `.embed--survey` `min-height` rules reserve space until
+   `form_embed.js` reports the real height, so the layout doesn't jump. Each
+   embed carries a phone-number fallback for when the frame can't load.
 4. **Good Morning Murfreesboro.** The `.video` block on `about.html` is a
    placeholder; drop in the real interview embed when the URL is available.
 5. **Business details.** Phone `629-772-3647` and the "by appointment" hours are
@@ -124,6 +137,13 @@ All colors, fonts and spacing live in the `:root` block at the top of
    be updated to match.
 6. **Canonical URLs.** Each page declares `https://talkingtailstn.com/<page>`.
    Update if the site lives somewhere else.
+
+## Newsletter signup
+
+The footer's **Subscribe** button opens a native `<dialog>` (`#newsletter`)
+holding the hosted newsletter form. The frame is `loading="lazy"`, so it isn't
+fetched until the dialog is shown. With JavaScript disabled the button does
+nothing; the newsletter is the only feature on the site that needs it.
 
 ## Accessibility & SEO notes
 
