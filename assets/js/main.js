@@ -40,6 +40,47 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
+  /* Newsletter dialog ----------------------------------------------------- */
+  var newsletter = document.getElementById('newsletter');
+
+  if (newsletter) {
+    var openNewsletter = function () {
+      if (typeof newsletter.showModal === 'function') {
+        newsletter.showModal();
+      } else {
+        newsletter.setAttribute('open', '');  /* no <dialog> support */
+      }
+    };
+
+    var closeNewsletter = function () {
+      if (typeof newsletter.close === 'function') {
+        newsletter.close();
+      } else {
+        newsletter.removeAttribute('open');
+      }
+    };
+
+    Array.prototype.forEach.call(
+      document.querySelectorAll('[data-newsletter-open]'),
+      function (btn) { btn.addEventListener('click', openNewsletter); }
+    );
+
+    Array.prototype.forEach.call(
+      document.querySelectorAll('[data-newsletter-close]'),
+      function (btn) { btn.addEventListener('click', closeNewsletter); }
+    );
+
+    /* Clicking the backdrop closes. The click lands on the dialog itself, so
+       compare against its box to avoid catching clicks on its own padding. */
+    newsletter.addEventListener('click', function (e) {
+      if (e.target !== newsletter) return;
+      var box = newsletter.getBoundingClientRect();
+      var inside = e.clientX >= box.left && e.clientX <= box.right &&
+                   e.clientY >= box.top && e.clientY <= box.bottom;
+      if (!inside) closeNewsletter();
+    });
+  }
+
   /* Scroll reveals -------------------------------------------------------- */
   var reveals = document.querySelectorAll('.reveal');
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
