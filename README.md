@@ -16,6 +16,8 @@ folder with anything (`python3 -m http.server`, Netlify, Vercel, S3, cPanel).
 | `videos.html` | Video gallery (placeholder thumbnails ready for embeds) |
 | `contact.html` | Contact details, evaluation request form, what to expect |
 | `quiz.html` | Free Assessment Quiz — hosted survey that recommends a program |
+| `thanks.html` | Post-submission confirmation — what happens next, links to fill the wait (`noindex`) |
+| `terms.html` | Terms &amp; conditions — site use, booking, cancellations, health rules, liability |
 
 Shared assets:
 
@@ -130,6 +132,14 @@ All colors, fonts and spacing live in the `:root` block at the top of
    `form_embed.js` reports the real height, so the layout doesn't jump. Each
    embed carries a phone-number fallback for when the frame can't load.
 
+   `thanks.html` exists as the confirmation destination, but nothing on this
+   site can send a visitor there — the redirect is a per-form setting inside
+   the LeadConnector builder (form settings &rarr; on submit &rarr; redirect to
+   `https://talkingtailstn.com/thanks.html`). Set it on the contact form and
+   the quiz; until then the embeds show their own inline confirmation and the
+   page is unreachable. It pushes a single `generate_lead` event to the
+   dataLayer for GTM/GA4 to hang the conversion on, and is `noindex, follow`.
+
    **Frame width.** Every embed sets its width explicitly on the `<iframe>`
    itself (`width="100%"` plus an inline `width:100%`), and `.embed__frame`
    repeats `width` / `min-width` / `max-width` with `!important` because
@@ -143,11 +153,20 @@ All colors, fonts and spacing live in the `:root` block at the top of
    100% (Styles &rarr; form width); the site side is already as wide as it can go.
 4. **Good Morning Murfreesboro.** The `.video` block on `about.html` is a
    placeholder; drop in the real interview embed when the URL is available.
-5. **Business details.** Phone `629-772-3647` and the "by appointment" hours are
+5. **Terms &amp; conditions.** `terms.html` is written from how the business
+   actually runs, but five things are guesses and are flagged with `CONFIRM`
+   comments in the file: deposit/refund terms, the cancellation window and any
+   missed-session fee, the required vaccinations, whether any program carries a
+   written guarantee (the page currently says results are not guaranteed), and
+   the legal entity name plus the county named in the governing-law clause. Have
+   a Tennessee attorney read it once before launch. There is no separate privacy
+   policy — data handling is covered in brief in &sect;11, which is the minimum
+   Google Ads expects; a standalone policy would be better.
+6. **Business details.** Phone `629-772-3647` and the "by appointment" hours are
    set throughout; confirm hours, and add an email address and street address if
    you want them public. The `LocalBusiness` JSON-LD block in `index.html` should
    be updated to match.
-6. **Canonical URLs.** Each page declares `https://talkingtailstn.com/<page>`.
+7. **Canonical URLs.** Each page declares `https://talkingtailstn.com/<page>`.
    Update if the site lives somewhere else.
 
 ## Newsletter signup

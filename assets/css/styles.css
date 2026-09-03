@@ -928,6 +928,32 @@ strong { font-weight: 700; }
 .info__row dd a { text-decoration: none; font-weight: 600; }
 .info__row dd a:hover { color: var(--ember-deep); }
 
+/* --- Legal pages -------------------------------------------------------- */
+/* Long-form prose (terms.html): the one place on the site that needs list
+   markers and a heading rhythm tighter than the marketing sections use. */
+.legal h2 {
+  font-size: clamp(1.2rem, 1.06rem + 0.5vw, 1.5rem);
+  margin-top: 3.25rem;
+  padding-top: 2.25rem;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: calc(var(--masthead) + 1.5rem);
+}
+.legal > h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.legal p { color: var(--ink-tint); }
+.legal ul { list-style: disc; padding-left: 1.2rem; color: var(--ink-tint); }
+.legal li + li { margin-top: 0.6rem; }
+.legal li::marker { color: var(--ember); }
+
+/* Section index that sits beside the terms (sticky above 1000px) */
+.toc { display: grid; gap: 0.75rem; }
+.toc a {
+  text-decoration: none;
+  font-size: 0.93rem;
+  color: var(--ink-tint);
+  transition: color 0.3s var(--ease);
+}
+.toc a:hover { color: var(--ember-deep); }
+
 /* --- Footer ------------------------------------------------------------- */
 .footer { background: var(--ink); color: var(--cream); padding-block: clamp(3.5rem, 7vw, 6rem) 2.5rem; }
 .footer__grid {
@@ -961,6 +987,8 @@ strong { font-weight: 700; }
   font-size: 0.83rem;
   color: rgba(251, 248, 245, 0.5);
 }
+.footer__bottom a { font-size: inherit; color: inherit; text-decoration: none; }
+.footer__bottom a:hover { color: #fff; }
 
 .footer__subscribe {
   display: flex;
