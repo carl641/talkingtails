@@ -849,10 +849,14 @@ strong { font-weight: 700; }
 }
 .embed__frame {
   display: block;
-  /* form_embed.js writes an inline width onto the frame; !important keeps it
-     filling the card instead. */
+  /* Each frame also carries an explicit width="100%" / inline width in the
+     markup. form_embed.js overwrites that inline width (and can stamp a
+     min/max-width) with the form's own configured size once the form reports
+     it, so all three are !important here to keep the frame filling the card.
+     min-width outranks max-width in CSS, which covers the max-width case. */
   width: 100% !important;
-  min-width: 100%;
+  min-width: 100% !important;
+  max-width: none !important;
   border: 0;
   border-radius: var(--radius);
 }
