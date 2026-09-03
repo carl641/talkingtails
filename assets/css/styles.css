@@ -847,6 +847,15 @@ strong { font-weight: 700; }
   padding: clamp(0.75rem, 1.5vw, 1.25rem);
   overflow: hidden;
 }
+/* 25px dark surround for the hosted contact-form frames. The padding lives on
+   this wrapper rather than the frame itself: form_embed.js writes an explicit
+   pixel height onto the iframe, and under border-box that padding would eat
+   into the form's own scroll area. */
+.embed__frame-pad {
+  background: #231F20;
+  padding: 25px;
+  border-radius: var(--radius);
+}
 .embed__frame {
   display: block;
   /* Each frame also carries an explicit width="100%" / inline width in the
