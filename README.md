@@ -129,6 +129,18 @@ All colors, fonts and spacing live in the `:root` block at the top of
    The `.embed--form` / `.embed--survey` `min-height` rules reserve space until
    `form_embed.js` reports the real height, so the layout doesn't jump. Each
    embed carries a phone-number fallback for when the frame can't load.
+
+   **Frame width.** Every embed sets its width explicitly on the `<iframe>`
+   itself (`width="100%"` plus an inline `width:100%`), and `.embed__frame`
+   repeats `width` / `min-width` / `max-width` with `!important` because
+   `form_embed.js` stamps the form's own configured size onto the element
+   inline once the form reports it. That makes the frame fill its card.
+
+   The width of the form *inside* the frame is a separate setting and can only
+   be changed in the LeadConnector form builder — the frame is cross-origin, so
+   no CSS here reaches it. If a form still renders narrow with empty gutters
+   inside a full-width frame, open the form in the builder and set its width to
+   100% (Styles &rarr; form width); the site side is already as wide as it can go.
 4. **Good Morning Murfreesboro.** The `.video` block on `about.html` is a
    placeholder; drop in the real interview embed when the URL is available.
 5. **Business details.** Phone `629-772-3647` and the "by appointment" hours are
