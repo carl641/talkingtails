@@ -2,16 +2,33 @@
 
 Static marketing site for **Talking Tails Dog Training** — Murfreesboro, Tennessee.
 
-No build step, no dependencies. Serve the folder with anything that strips
-`.html` from requests (Netlify, Vercel, Cloudflare Pages, GitHub Pages, or
-Apache with `MultiViews`).
+No build step, no dependencies. Deployed to Hostinger — upload the folder,
+including `.htaccess`, to `public_html`.
 
-**Clean URLs.** Every internal link is root-relative and extensionless —
-`/about`, `/training#puppy`, and `/` for the home page — while the files on
-disk keep their `.html` names. The host is what maps `/about` to `about.html`,
-so opening a file directly from disk (`file://`) won't navigate; use a server
-that does the mapping. Canonical tags match: `https://talkingtailstn.com/about`,
-and `https://talkingtailstn.com/` for home.
+**Clean URLs.** Every internal link is root-relative and extensionless:
+`/about`, `/training#puppy`, and `/` for the home page. The files on disk keep
+their `.html` names, and `.htaccess` is what connects the two — Hostinger runs
+LiteSpeed, which reads it the way Apache does. It does four things:
+
+| Request | Result |
+| --- | --- |
+| `/about` | serves `about.html` in place, no redirect |
+| `/about.html` | `301` to `/about` |
+| `/index.html`, `/index` | `301` to `/` |
+| `/about/` | `301` to `/about` |
+
+The old `.html` URLs redirect rather than 404, so existing links and search
+rankings follow to the new addresses. Two consequences worth knowing:
+
+- **Opening a file straight from disk (`file://`) won't navigate** — there's no
+  server to do the mapping. Use `python3 -m http.server` for a quick look
+  (links resolve, though it won't apply the `.html` rules), or a local Apache.
+- **If the server already has an `.htaccess`** (SSL or `www` redirects added
+  from hPanel), merge these rules into it rather than overwriting it.
+
+Asset paths are root-relative (`/assets/...`) for the same reason, so they
+resolve identically at any URL depth. Canonical tags match the clean URLs:
+`https://talkingtailsdogtraining.com/about`, and `.../` for home.
 
 ## Pages
 
@@ -143,7 +160,7 @@ All colors, fonts and spacing live in the `:root` block at the top of
    `thanks.html` exists as the confirmation destination, but nothing on this
    site can send a visitor there — the redirect is a per-form setting inside
    the LeadConnector builder (form settings &rarr; on submit &rarr; redirect to
-   `https://talkingtailstn.com/thanks`). Set it on the contact form and
+   `https://talkingtailsdogtraining.com/thanks`). Set it on the contact form and
    the quiz; until then the embeds show their own inline confirmation and the
    page is unreachable. It pushes a single `generate_lead` event to the
    dataLayer for GTM/GA4 to hang the conversion on, and is `noindex, follow`.
@@ -174,8 +191,9 @@ All colors, fonts and spacing live in the `:root` block at the top of
    set throughout; confirm hours, and add an email address and street address if
    you want them public. The `LocalBusiness` JSON-LD block in `index.html` should
    be updated to match.
-7. **Canonical URLs.** Each page declares `https://talkingtailstn.com/<page>`.
-   Update if the site lives somewhere else.
+7. **Canonical URLs.** Each page declares `https://talkingtailsdogtraining.com/<page>`
+   (no `.html`), and `https://talkingtailsdogtraining.com/` for home. Update if
+   the site lives somewhere else.
 
 ## Newsletter signup
 

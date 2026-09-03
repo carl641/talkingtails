@@ -1,0 +1,37 @@
+# Clean URLs for a flat static site.
+#
+# Files on disk keep their .html names; this file is what makes
+# /about serve about.html, and what sends the old .html URLs to
+# their new home with a permanent redirect so search rankings and
+# any existing inbound links follow.
+#
+# Hostinger runs LiteSpeed, which reads .htaccess the way Apache does.
+# If the server already has an .htaccess (SSL or www redirects added
+# from hPanel), merge these rules into it rather than replacing it.
+
+<IfModule mod_negotiation.c>
+  # Let the rules below decide what /about means, not content negotiation.
+  Options -MultiViews
+</IfModule>
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# /index.html and /index  ->  /
+RewriteCond %{THE_REQUEST} \s/+index(\.html)?[\s?] [NC]
+RewriteRule ^ / [R=301,L]
+
+# /about.html  ->  /about   (one permanent redirect, not a loop:
+# the internal rewrite at the bottom doesn't re-enter THE_REQUEST)
+RewriteCond %{THE_REQUEST} \s/+([^\s?]+)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# /about/  ->  /about  so relative URLs never resolve a level too deep
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+# /about  ->  about.html, served in place with no visible redirect
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.+)$ $1.html [L]
+</IfModule>
