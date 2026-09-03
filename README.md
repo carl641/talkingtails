@@ -2,8 +2,16 @@
 
 Static marketing site for **Talking Tails Dog Training** — Murfreesboro, Tennessee.
 
-No build step, no dependencies. Open `index.html` in a browser, or serve the
-folder with anything (`python3 -m http.server`, Netlify, Vercel, S3, cPanel).
+No build step, no dependencies. Serve the folder with anything that strips
+`.html` from requests (Netlify, Vercel, Cloudflare Pages, GitHub Pages, or
+Apache with `MultiViews`).
+
+**Clean URLs.** Every internal link is root-relative and extensionless —
+`/about`, `/training#puppy`, and `/` for the home page — while the files on
+disk keep their `.html` names. The host is what maps `/about` to `about.html`,
+so opening a file directly from disk (`file://`) won't navigate; use a server
+that does the mapping. Canonical tags match: `https://talkingtailstn.com/about`,
+and `https://talkingtailstn.com/` for home.
 
 ## Pages
 
@@ -135,7 +143,7 @@ All colors, fonts and spacing live in the `:root` block at the top of
    `thanks.html` exists as the confirmation destination, but nothing on this
    site can send a visitor there — the redirect is a per-form setting inside
    the LeadConnector builder (form settings &rarr; on submit &rarr; redirect to
-   `https://talkingtailstn.com/thanks.html`). Set it on the contact form and
+   `https://talkingtailstn.com/thanks`). Set it on the contact form and
    the quiz; until then the embeds show their own inline confirmation and the
    page is unreachable. It pushes a single `generate_lead` event to the
    dataLayer for GTM/GA4 to hang the conversion on, and is `noindex, follow`.
