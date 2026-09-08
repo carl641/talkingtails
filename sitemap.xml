@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Indexable pages only, listed at their canonical URLs: https, no www, no
+  .html extension, matching the canonical link in each page and the
+  redirects in .htaccess. /thanks is left out on purpose, since it carries
+  a noindex robots meta tag, and listing a noindex URL here only invites a
+  "Submitted URL marked noindex" error in Search Console.
+
+  changefreq and priority are omitted: Google ignores both.
+
+  Update lastmod when a page's content actually changes. A date that moves
+  on every deploy teaches crawlers to stop trusting it.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://talkingtailsdogtraining.com/</loc>
+    <lastmod>2026-09-03</lastmod>
+  </url>
+
+  <url>
+    <loc>https://talkingtailsdogtraining.com/training</loc>
+    <lastmod>2026-09-03</lastmod>
+  </url>
+
+  <url>
+    <loc>https://talkingtailsdogtraining.com/trainers</loc>
+    <lastmod>2026-09-03</lastmod>
+  </url>
+
+  <url>
+    <loc>https://talkingtailsdogtraining.com/about</loc>
+    <lastmod>2026-09-03</lastmod>
+  </url>
+
+  <url>
+    <loc>https://talkingtailsdogtraining.com/videos</loc>
+    <lastmod>2026-09-03</lastmod>
+  </url>
+
+  <url>
+    <loc>https://talkingtailsdogtraining.com/quiz</loc>
+    <lastmod>2026-09-03</lastmod>
+  </url>
+
+  <url>
+    <loc>https://talkingtailsdogtraining.com/contact</loc>
+    <lastmod>2026-09-03</lastmod>
+  </url>
+
+  <url>
+    <loc>https://talkingtailsdogtraining.com/terms</loc>
+    <lastmod>2026-09-03</lastmod>
+  </url>
+
+</urlset>
