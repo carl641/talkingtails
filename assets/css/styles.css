@@ -804,6 +804,30 @@ strong { font-weight: 700; }
   margin-bottom: 0.9rem;
 }
 
+/* --- YouTube channel panel ---------------------------------------------- */
+.ytpanel {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: clamp(1.6rem, 3.5vw, 2.6rem);
+  padding: clamp(2.4rem, 6vw, 4.5rem) clamp(1.4rem, 5vw, 4rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--paper);
+}
+.ytpanel__logo { display: block; max-width: 100%; }
+.ytpanel__logo img {
+  width: min(560px, 100%);
+  height: auto;
+  transition: transform 0.45s var(--ease);
+}
+.ytpanel__logo:hover img { transform: scale(1.03); }
+.ytpanel h2 { max-width: 20ch; }
+.ytpanel .lede { max-width: 52ch; }
+.btn--yt { --btn-bg: #ff0000; --btn-fg: #fff; border-color: #ff0000; }
+.btn--yt:hover { background: #cc0000; border-color: #cc0000; }
+.dark .ytpanel { background: rgba(255, 255, 255, 0.04); border-color: var(--line-light); }
+
 /* --- Forms -------------------------------------------------------------- */
 .form {
   background: var(--paper);
