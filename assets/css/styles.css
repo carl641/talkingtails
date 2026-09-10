@@ -815,10 +815,13 @@ strong { font-weight: 700; }
   border-radius: var(--radius-lg);
   background: var(--paper);
 }
-.ytpanel__logo { display: block; max-width: 100%; }
+.ytpanel__logo { display: block; width: min(440px, 100%); }
+/* Explicit ratio + auto height: the logo scales, it never stretches. */
 .ytpanel__logo img {
-  width: min(560px, 100%);
+  width: 100%;
   height: auto;
+  aspect-ratio: 3303 / 1947;
+  object-fit: contain;
   transition: transform 0.45s var(--ease);
 }
 .ytpanel__logo:hover img { transform: scale(1.03); }
@@ -1325,19 +1328,26 @@ strong { font-weight: 700; }
 .person:hover { transform: translateY(-6px); box-shadow: 0 26px 50px -30px rgba(15, 29, 43, 0.45); }
 .person__photo {
   position: relative;
-  /* Portrait tile: the source photos are landscape, so a short 4/3 window left
-     everyone small and cut off. 3/4 crops in and puts the face front and centre. */
-  aspect-ratio: 3 / 4;
+  /* The source photos are landscape. A portrait window has to zoom ~2x into
+     them to fill, which crops heads and reads as a stretched photo, so the tile
+     matches the source shape and object-position lifts the crop to face level. */
+  aspect-ratio: 4 / 3;
   display: grid;
   place-items: center;
   background: linear-gradient(150deg, var(--ink) 0%, var(--ink-soft) 100%);
   color: rgba(251, 248, 245, 0.9);
 }
 .person__photo svg { width: min(46%, 130px); height: auto; }
-/* Real headshot in place of the paw placeholder: fills the same 4/3 tile and
-   drops the decorative gradient so nothing tints the photo. */
+/* Real headshot in place of the paw placeholder: fills the tile and drops the
+   decorative gradient so nothing tints the photo. */
 .person__photo--img { background: var(--sand); }
-.person__photo--img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.person__photo--img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  display: block;
+}
 .person__photo--img::after { display: none; }
 .person__photo::after {
   content: "";
