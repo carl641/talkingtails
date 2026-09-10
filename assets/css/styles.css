@@ -252,6 +252,7 @@ strong { font-weight: 700; }
 .nav { display: flex; align-items: center; gap: 2rem; }
 .nav a {
   text-decoration: none;
+  white-space: nowrap;
   font-size: 0.93rem;
   font-weight: 500;
   color: var(--ink);
@@ -1082,6 +1083,14 @@ strong { font-weight: 700; }
 :focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; border-radius: 3px; }
 
 /* --- Responsive --------------------------------------------------------- */
+@media (max-width: 1180px) {
+  /* Seven nav items, a logo and the CTA block only just fit at this width —
+     close the gaps rather than let the nav push the phone number off-screen. */
+  .nav { gap: 1.25rem; }
+  .nav a { font-size: 0.88rem; }
+  .masthead__cta { gap: 0.9rem; }
+}
+
 @media (max-width: 1000px) {
   .grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
