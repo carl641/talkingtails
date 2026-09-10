@@ -38,6 +38,7 @@ resolve identically at any URL depth. Canonical tags match the clean URLs:
 | `about.html` | Who we are, training principles, All Pet Card financing, service area, owner bio, press |
 | `trainers.html` | Trainers &amp; staff roster with expandable bios, plus verified Google reviews |
 | `training.html` | The four programs in detail, behavior solutions, FAQ |
+| `puppy-training-murfreesboro-tn.html` | Local landing page — puppy training in Murfreesboro/Rutherford County: curriculum, process, service area, puppy FAQ, `Service` + `FAQPage` schema |
 | `videos.html` | Video gallery (placeholder thumbnails ready for embeds) |
 | `contact.html` | Contact details, evaluation request form, what to expect |
 | `quiz.html` | Free Assessment Quiz — hosted survey that recommends a program |
