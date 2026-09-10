@@ -1308,6 +1308,11 @@ strong { font-weight: 700; }
   color: rgba(251, 248, 245, 0.9);
 }
 .person__photo svg { width: min(46%, 130px); height: auto; }
+/* Real headshot in place of the paw placeholder: fills the same 4/3 tile and
+   drops the decorative gradient so nothing tints the photo. */
+.person__photo--img { background: var(--sand); }
+.person__photo--img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.person__photo--img::after { display: none; }
 .person__photo::after {
   content: "";
   position: absolute;
