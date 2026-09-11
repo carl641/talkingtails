@@ -39,6 +39,7 @@ resolve identically at any URL depth. Canonical tags match the clean URLs:
 | `trainers.html` | Trainers &amp; staff roster with expandable bios, plus verified Google reviews |
 | `training.html` | The four programs in detail, behavior solutions, FAQ |
 | `puppy-training-murfreesboro-tn.html` | Local landing page — puppy training in Murfreesboro/Rutherford County: curriculum, process, service area, puppy FAQ, `Service` + `FAQPage` schema |
+| `reviews.html` | Live client reviews &mdash; a Trustindex widget pulling from the public review profiles |
 | `videos.html` | Video gallery (placeholder thumbnails ready for embeds) |
 | `contact.html` | Contact details, evaluation request form, what to expect |
 | `quiz.html` | Free Assessment Quiz — hosted survey that recommends a program |
@@ -144,6 +145,28 @@ All colors, fonts and spacing live in the `:root` block at the top of
    that page point at `#` and need the real review URL. Note the review count
    differs between pages — `trainers.html` says 260 (client copy), `index.html`
    says 288+. Pick one number.
+
+   `reviews.html` is the exception and needs none of the above: it renders a
+   **Trustindex** widget (account `c8a3b1a81269265deb067b60d7b`) that pulls the
+   reviews live, so nothing there is hand-copied and nothing goes stale. The
+   loader inserts the widget immediately after its own `<script>` tag, which is
+   why that tag sits inline in the page body rather than in the `<head>` — move
+   it and the widget moves with it. Everything about what it shows (which
+   platforms, how many reviews, the layout, whether it carries a *write a
+   review* button) is configured in the Trustindex account, not here.
+
+   Two things were deliberately left off that page. No review count or star
+   average in the surrounding copy, because the widget already carries the live
+   figures and a hardcoded number would drift out of date and contradict them —
+   which is the same problem as the 260-vs-288 mismatch above. And no
+   `AggregateRating` JSON-LD, because the widget emits its own review markup;
+   a hand-written second copy would duplicate it, and self-serving rating markup
+   on your own site is what Google's review-snippet guidelines exclude anyway.
+
+   The widget needs JavaScript. With it off the page falls back to a short block
+   pointing at the quoted reviews on `/trainers` and the phone number. If the
+   commented-out CSP in `.htaccess` is ever switched on, `cdn.trustindex.io` is
+   already listed there across the five directives the widget touches.
 3. **Hosted forms.** Three embeds are served from
    `links.talkingtailsdogtraining.com` and sized by its `form_embed.js`, which
    every page loads at the end of `<body>`:

@@ -130,8 +130,11 @@ RewriteRule ^(.+)$ $1.html [L]
   # new Google Tag Manager tag that loads a script from a new host will be
   # blocked until that host is added to script-src, and the failure shows up
   # only in the browser console. Turn it on, then walk every page with the
-  # console open -- home, contact, quiz, thanks -- and confirm the embedded
-  # forms still render and submit.
+  # console open -- home, contact, quiz, thanks, reviews -- and confirm the
+  # embedded forms still render and submit and the review widget still fills
+  # in. The widget is the most fragile of the three: it pulls script, CSS,
+  # fonts, review JSON and reviewer avatars, so it trips five directives
+  # rather than one.
   #
   # 'unsafe-inline' in script-src is unavoidable here: the gtag and GTM
   # snippets are inline <script> blocks in every page's <head>. It weakens
@@ -139,6 +142,9 @@ RewriteRule ^(.+)$ $1.html [L]
   # base-uri and form-action all shut down injection routes that inline
   # script alone can't reach.
   #
-  # Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://links.talkingtailsdogtraining.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://links.talkingtailsdogtraining.com; frame-src https://links.talkingtailsdogtraining.com https://www.googletagmanager.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'"
+  # cdn.trustindex.io is the review widget on /reviews, and googleusercontent
+  # is where the reviewer profile photos inside it are served from.
+  #
+  # Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://links.talkingtailsdogtraining.com https://cdn.trustindex.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.trustindex.io; font-src 'self' https://fonts.gstatic.com https://cdn.trustindex.io; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com https://cdn.trustindex.io https://*.googleusercontent.com; connect-src 'self' https://www.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://links.talkingtailsdogtraining.com https://cdn.trustindex.io; frame-src https://links.talkingtailsdogtraining.com https://www.googletagmanager.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'"
 
 </IfModule>
