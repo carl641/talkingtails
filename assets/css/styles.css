@@ -272,6 +272,70 @@ strong { font-weight: 700; }
 .nav a:hover::after, .nav a[aria-current="page"]::after { transform: scaleX(1); transform-origin: left; }
 .nav a[aria-current="page"] { color: var(--ember-deep); }
 
+/* About dropdown. The trigger stays a plain link — the chevron beside it is a
+   disclosure button, so the parent page is still reachable in one tap. */
+.nav__group { position: relative; display: flex; align-items: center; gap: 0.3rem; }
+.nav__group.is-current > .nav__link { color: var(--ember-deep); }
+
+.nav__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px; height: 20px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink-tint);
+  cursor: pointer;
+}
+.nav__toggle svg { transition: transform 0.3s var(--ease); }
+.nav__group:hover .nav__toggle, .nav__group.is-open .nav__toggle { color: var(--ember-deep); }
+
+.nav__menu a { text-decoration: none; }
+
+@media (min-width: 861px) {
+  .nav__group.is-current > .nav__link::after { transform: scaleX(1); transform-origin: left; }
+
+  .nav__menu {
+    position: absolute;
+    top: 100%; left: -0.75rem;
+    display: grid;
+    min-width: 190px;
+    margin-top: 0.85rem;
+    padding: 0.5rem;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: 0 26px 44px -30px rgba(15, 29, 43, 0.55);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.28s var(--ease), transform 0.28s var(--ease), visibility 0.28s;
+  }
+  /* Bridges the gap under the trigger so the pointer never crosses dead space. */
+  .nav__menu::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0;
+    top: -0.85rem; height: 0.85rem;
+  }
+  .nav__group:hover .nav__menu,
+  .nav__group:focus-within .nav__menu,
+  .nav__group.is-open .nav__menu {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  .nav__group:hover .nav__toggle svg,
+  .nav__group:focus-within .nav__toggle svg,
+  .nav__group.is-open .nav__toggle svg { transform: rotate(180deg); }
+
+  .nav__menu a { padding: 0.5rem 0.7rem; border-radius: 3px; }
+  .nav__menu a::after { display: none; }
+  .nav__menu a:hover { background: var(--ember-tint); color: var(--ember-deep); }
+}
+
 .masthead__cta { display: flex; align-items: center; gap: 1.25rem; }
 .phone-link {
   display: inline-flex;
@@ -1127,8 +1191,8 @@ strong { font-weight: 700; }
 
 /* --- Responsive --------------------------------------------------------- */
 @media (max-width: 1180px) {
-  /* Seven nav items, a logo and the CTA block only just fit at this width —
-     close the gaps rather than let the nav push the phone number off-screen. */
+  /* The nav, a logo and the CTA block only just fit at this width — close the
+     gaps rather than let the nav push the phone number off-screen. */
   .nav { gap: 1.25rem; }
   .nav a { font-size: 0.88rem; }
   .masthead__cta { gap: 0.9rem; }
@@ -1163,6 +1227,28 @@ strong { font-weight: 700; }
   .nav.is-open { transform: none; }
   .nav a { width: 100%; padding-block: 0.95rem; border-bottom: 1px solid var(--line); font-size: 1.05rem; }
   .nav a::after { display: none; }
+
+  .nav__group { flex-wrap: wrap; width: 100%; gap: 0; }
+  .nav__group > .nav__link { flex: 1; width: auto; }
+  .nav__toggle {
+    width: 3rem;
+    height: auto;
+    align-self: stretch;
+    border-radius: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav__toggle svg { width: 14px; height: 14px; }
+  .nav__group.is-open .nav__toggle svg { transform: rotate(180deg); }
+
+  .nav__menu { display: none; flex-basis: 100%; padding: 0.35rem 0 0.75rem 1rem; }
+  .nav__group.is-open .nav__menu { display: grid; }
+  .nav__menu a {
+    padding-block: 0.6rem;
+    border-bottom: 0;
+    font-size: 1rem;
+    color: var(--ink-tint);
+  }
+  .nav__menu a[aria-current="page"] { color: var(--ember-deep); }
   .burger { display: block; }
   .masthead__cta .phone-link span { display: none; }
   .masthead__cta .btn { display: none; }

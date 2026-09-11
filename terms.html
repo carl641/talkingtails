@@ -49,12 +49,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <nav class="nav" id="primary-nav" aria-label="Primary">
       <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/trainers">Trainers</a>
+
+      <div class="nav__group">
+        <a class="nav__link" href="/about">About</a>
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="about-menu" aria-label="Toggle About submenu">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nav__menu" id="about-menu">
+          <a href="/trainers">Trainers</a>
+          <a href="/reviews">Reviews</a>
+          <a href="/videos">Videos</a>
+        </div>
+      </div>
+
       <a href="/training">Training</a>
       <a href="/puppy-training-murfreesboro-tn">Puppy Training</a>
-      <a href="/reviews">Reviews</a>
-      <a href="/videos">Videos</a>
       <a href="/contact">Contact</a>
     </nav>
 
