@@ -913,6 +913,22 @@ strong { font-weight: 700; }
   .embed { padding: 0.5rem; }
 }
 
+/* --- Third-party review widget ------------------------------------------ */
+/* Trustindex on reviews.html. The widget arrives fully styled by its own
+   stylesheet and is cross-origin, so nothing here reaches inside it; all this
+   wrapper does is hold a block of space open until the widget lands, so the
+   sections below it don't jump down the page when it does.
+
+   The reservation gives itself back the moment anything is injected into the
+   wrapper, which is why it reads ":not(script)" rather than a Trustindex class
+   name: the loader's own <script> is the wrapper's only child until the widget
+   exists, and matching on structure instead of on their markup means a rename
+   on their side can't strand an empty 440px gap here. Browsers without :has()
+   keep the reservation, which costs whitespace at worst. Tune the one number
+   if the real widget settles much taller or shorter. */
+.ti-wrap { min-height: 440px; }
+.ti-wrap:has(> :not(script)) { min-height: 0; }
+
 /* --- Details / FAQ ------------------------------------------------------ */
 .faq { border-top: 1px solid var(--line); }
 .faq details {
