@@ -30,6 +30,48 @@
     });
   }
 
+  /* Nav dropdowns --------------------------------------------------------- */
+  /* Hover and focus open the panel in CSS; this adds click and keyboard, and
+     is the only thing driving the accordion on the mobile panel. */
+  var desktop = window.matchMedia('(min-width: 861px)');
+
+  Array.prototype.forEach.call(
+    document.querySelectorAll('.nav__group'),
+    function (group) {
+      var toggle = group.querySelector('.nav__toggle');
+      if (!toggle) return;
+
+      var setOpen = function (open) {
+        group.classList.toggle('is-open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+      };
+
+      toggle.addEventListener('click', function () {
+        setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+      });
+
+      group.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape' || !group.classList.contains('is-open')) return;
+        e.stopPropagation();          /* leave the mobile panel itself open */
+        setOpen(false);
+        toggle.focus();
+      });
+
+      /* Only the floating desktop panel needs to close itself again. */
+      group.addEventListener('mouseleave', function () {
+        if (desktop.matches) setOpen(false);
+      });
+
+      group.addEventListener('focusout', function (e) {
+        if (desktop.matches && !group.contains(e.relatedTarget)) setOpen(false);
+      });
+
+      document.addEventListener('click', function (e) {
+        if (desktop.matches && !group.contains(e.target)) setOpen(false);
+      });
+    }
+  );
+
   /* Hairline under the masthead once the page scrolls ---------------------- */
   var masthead = document.querySelector('.masthead');
   if (masthead) {
