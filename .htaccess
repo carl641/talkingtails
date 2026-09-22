@@ -37,19 +37,62 @@ RewriteEngine On
 # straight to the new domain's https URL is one hop from wherever a visitor
 # started.
 #
-# Named pages first, catch-all last. A path that was renamed in the move needs
-# to be sent to its new name explicitly -- /training-programs became /training,
-# and passing it through untouched would only trade a dead old URL for a dead
-# new one. Add a pair of lines per renamed path; anything not listed keeps its
-# path and lands on the matching page here.
+# Renamed paths first, then the catch-all, because the first match wins.
+#
+# These are the old site's seven pages. /videos, /reviews and /quiz kept their
+# names and need no rule -- the catch-all below lands them on the pages of the
+# same name here. The four that changed are listed individually, since passing
+# them through untouched would only trade a dead old URL for a dead new one.
+#
+#   /training-programs -> /training
+#   /about-us          -> /about
+#   /contact-us        -> /contact
+#   /career            -> /contact   (see below)
+#
+# Each carries its own host condition rather than sharing one. A RewriteCond
+# binds only to the rule directly after it, so there is no way to hoist it;
+# spelling it out per rule also means a line pair can be copied, edited and
+# pasted for the next renamed path without the host test being left behind.
+#
+# The (/.*)?$ tail matches the path bare, with a trailing slash, and with
+# anything nested beneath it, so /training-programs, /training-programs/ and
+# /training-programs/puppy all land in one hop.
 RewriteCond %{HTTP_HOST} ^(www\.)?talkingtailstn\.com$ [NC]
 RewriteRule ^training-programs(/.*)?$ https://talkingtailsdogtraining.com/training [R=301,L]
 
+RewriteCond %{HTTP_HOST} ^(www\.)?talkingtailstn\.com$ [NC]
+RewriteRule ^about-us(/.*)?$ https://talkingtailsdogtraining.com/about [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?talkingtailstn\.com$ [NC]
+RewriteRule ^contact-us(/.*)?$ https://talkingtailsdogtraining.com/contact [R=301,L]
+
+# /career has no successor -- this site has no careers page. /contact is the
+# nearest honest destination, since it carries the phone number and email an
+# applicant would need, and it beats dropping them on a 404. It is a
+# placeholder for a decision, not a mapping: point this at a real careers
+# page once one exists, or at /trainers if the intent is to show the team.
+# Matches /careers too, in case the old path was ever spelled that way.
+RewriteCond %{HTTP_HOST} ^(www\.)?talkingtailstn\.com$ [NC]
+RewriteRule ^careers?(/.*)?$ https://talkingtailsdogtraining.com/contact [R=301,L]
+
+# Trailing slashes, folded in while the domain changes rather than after it.
+# The old site wrote its URLs with them (/videos/), and this site's canonical
+# form has none. Without this the catch-all would hand /videos/ to the new
+# domain intact, where the rule further down would bounce it again to /videos
+# -- two redirects where one will do, on the majority of old inbound links.
+RewriteCond %{HTTP_HOST} ^(www\.)?talkingtailstn\.com$ [NC]
+RewriteCond %{REQUEST_URI} !^/\.well-known/
+RewriteRule ^(.+?)/+$ https://talkingtailsdogtraining.com/$1 [R=301,L]
+
 # Everything else: same path, new domain, query string carried along by the
-# server. .well-known is the exception, because Let's Encrypt validates this
-# domain's certificate by fetching /.well-known/acme-challenge/ over plain
-# HTTP -- redirect that away and issuance fails now and renewal fails every
-# 90 days after, each time taking HTTPS on the old domain down with it.
+# server. Unlisted paths are deliberately sent to the matching path here and
+# allowed to 404 if there is none -- a wrong page is worse than an honest
+# miss, and the 404s surface in Search Console where they can be mapped.
+#
+# .well-known is the exception, because Let's Encrypt validates this domain's
+# certificate by fetching /.well-known/acme-challenge/ over plain HTTP --
+# redirect that away and issuance fails now and renewal fails every 90 days
+# after, each time taking HTTPS on the old domain down with it.
 RewriteCond %{HTTP_HOST} ^(www\.)?talkingtailstn\.com$ [NC]
 RewriteCond %{REQUEST_URI} !^/\.well-known/
 RewriteRule ^ https://talkingtailsdogtraining.com%{REQUEST_URI} [R=301,L]
