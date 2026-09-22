@@ -22,6 +22,39 @@
 RewriteEngine On
 
 # ---------------------------------------------------------------------------
+# Retired domain: talkingtailstn.com -> talkingtailsdogtraining.com
+#
+# talkingtailstn.com is an alias domain on this hosting account, pointed here
+# by an A record that still lives in GoDaddy's DNS (so its MX and TXT records,
+# and the mail they carry, stay where they are). Being an alias means it serves
+# this same public_html, which without these rules would put the entire site at
+# a second address -- two hostnames, identical pages, and only the canonical
+# tags to tell Google which one counts. These rules send it away instead.
+#
+# First in the file on purpose. Every rule below rewrites within the current
+# host, so anything reached before this point would redirect twice: once to
+# fix the scheme or strip the www, then again to change domain. Jumping
+# straight to the new domain's https URL is one hop from wherever a visitor
+# started.
+#
+# Named pages first, catch-all last. A path that was renamed in the move needs
+# to be sent to its new name explicitly -- /training-programs became /training,
+# and passing it through untouched would only trade a dead old URL for a dead
+# new one. Add a pair of lines per renamed path; anything not listed keeps its
+# path and lands on the matching page here.
+RewriteCond %{HTTP_HOST} ^(www\.)?talkingtailstn\.com$ [NC]
+RewriteRule ^training-programs(/.*)?$ https://talkingtailsdogtraining.com/training [R=301,L]
+
+# Everything else: same path, new domain, query string carried along by the
+# server. .well-known is the exception, because Let's Encrypt validates this
+# domain's certificate by fetching /.well-known/acme-challenge/ over plain
+# HTTP -- redirect that away and issuance fails now and renewal fails every
+# 90 days after, each time taking HTTPS on the old domain down with it.
+RewriteCond %{HTTP_HOST} ^(www\.)?talkingtailstn\.com$ [NC]
+RewriteCond %{REQUEST_URI} !^/\.well-known/
+RewriteRule ^ https://talkingtailsdogtraining.com%{REQUEST_URI} [R=301,L]
+
+# ---------------------------------------------------------------------------
 # Transport: HTTPS and the canonical hostname.
 # These run before the clean-URL rules so a request only ever changes
 # scheme/host once, then changes path once.
