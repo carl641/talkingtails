@@ -17,6 +17,14 @@ LiteSpeed, which reads it the way Apache does. It does four things:
 | `/index.html`, `/index` | `301` to `/` |
 | `/about/` | `301` to `/about` |
 
+It also retires the old domain. `talkingtailstn.com` is an alias domain on the
+same hosting account — it serves this same `public_html`, so a rule at the top
+of `.htaccess` `301`s every request on that hostname to the matching path on
+`talkingtailsdogtraining.com`, keeping the site at one address. Paths that were
+renamed in the move (`/training-programs` → `/training`) are listed there
+individually; everything else keeps its path. Its DNS stays at GoDaddy — only
+the `A` record points here, so the domain's mail records are untouched.
+
 The old `.html` URLs redirect rather than 404, so existing links and search
 rankings follow to the new addresses. Two consequences worth knowing:
 
