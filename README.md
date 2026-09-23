@@ -67,10 +67,11 @@ assets/js/main.js       mobile nav, sticky-header hairline, scroll reveals,
                         newsletter dialog
 ```
 
-The last five are the **Training** dropdown in the main menu (About's dropdown
-works the same way: `nav__group`, with `is-current` on the group and
-`aria-current="page"` on the sub-link when one of its pages is open). Each is
-built from the client's copy, carries a `Service` JSON-LD block, and closes on
+The puppy page and the five rows after it make up the **Training** dropdown in
+the main menu, with Puppy Training directly above Obedience Training (About's
+dropdown works the same way: `nav__group`, with `is-current` on the group and
+`aria-current="page"` on the sub-link when one of its pages is open). Those five
+are built from the client's copy, carry a `Service` JSON-LD block, and close on
 the evaluation form at `#evaluation` &mdash; the target of both the page's *Book
 Your Free Evaluation* button and the masthead's *Free Evaluation* button. The
 bite-history and off-leash safety caveats sit in a `.note` box so they can't be
@@ -254,12 +255,10 @@ nothing; the newsletter is the only feature on the site that needs it.
 
 - Skip link, visible focus rings, labelled form fields, `aria-current` on the
   active nav item, `aria-expanded` on the mobile menu toggle.
-- Two dropdown chevrons leave the masthead about 100px short of one line below
-  1000px, so there the phone link shows only its icon. The number is visually
-  hidden rather than `display: none`, so it stays the link's accessible name
-  &mdash; on phones too, where it used to be removed outright.
+- On phones the masthead phone link shows only its icon. The number is visually
+  hidden rather than `display: none`, so it stays the link's accessible name.
 - The mobile menu panel is capped at the screen height and scrolls itself: with
-  both submenus open it runs to ~750px, past the bottom of a short phone.
+  both submenus open it runs to ~740px, past the bottom of a short phone.
 - One `<h1>` per page, unique `<title>` and meta description, Open Graph tags,
   `LocalBusiness` structured data on the home page.
 - `prefers-reduced-motion` disables every animation and reveal.
