@@ -1908,8 +1908,8 @@ strong { font-weight: 700; }
 .roadmap-tip__watch b { color: var(--ink); }
 
 /* Photo + navy callout at the foot of milestones 01, 03 and 05. The photo box
-   is sized by the grid, not the image, so the hotlinked photos carry no
-   width/height and still can't shift the layout as they load. */
+   is sized by the grid, not the image, so nothing shifts as a photo loads;
+   03's, hotlinked from Unsplash, goes without width/height for that reason. */
 .roadmap-cta {
   display: grid;
   grid-template-columns: 34% minmax(0, 1fr);
