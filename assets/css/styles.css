@@ -272,8 +272,9 @@ strong { font-weight: 700; }
 .nav a:hover::after, .nav a[aria-current="page"]::after { transform: scaleX(1); transform-origin: left; }
 .nav a[aria-current="page"] { color: var(--ember-deep); }
 
-/* About dropdown. The trigger stays a plain link — the chevron beside it is a
-   disclosure button, so the parent page is still reachable in one tap. */
+/* Nav dropdowns (About, Training). The trigger stays a plain link — the chevron
+   beside it is a disclosure button, so the parent page is still reachable in
+   one tap. */
 .nav__group { position: relative; display: flex; align-items: center; gap: 0.3rem; }
 .nav__group.is-current > .nav__link { color: var(--ember-deep); }
 
@@ -1023,6 +1024,18 @@ strong { font-weight: 700; }
 .faq details[open] summary::after { transform: rotate(45deg); }
 .faq details p { margin-top: 1rem; color: var(--ink-tint); max-width: 68ch; }
 
+/* --- Note --------------------------------------------------------------- */
+/* One paragraph set apart from the prose around it: the safety and
+   bite-history caveats on the training pages. Same ember edge as .summary,
+   but full-strength ink, since these are the lines a reader must not skim. */
+.note {
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--ember);
+  border-radius: var(--radius-lg);
+  background: var(--paper);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
 /* --- Info list ---------------------------------------------------------- */
 .info { display: grid; gap: 0; }
 .info__row {
@@ -1199,6 +1212,18 @@ strong { font-weight: 700; }
 }
 
 @media (max-width: 1000px) {
+  /* Two dropdown chevrons leave the masthead ~100px short of one line here, and
+     the Free Evaluation button was the thing wrapping. The number goes first:
+     the phone icon stays a tap-to-call link, and the number stays in the
+     accessibility tree (visually hidden, not display:none) as its name. */
+  .masthead__cta .phone-link span {
+    position: absolute;
+    width: 1px; height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
   .grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .footer__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -1223,6 +1248,12 @@ strong { font-weight: 700; }
     transform: translateY(-120%);
     transition: transform 0.45s var(--ease);
     box-shadow: 0 24px 40px -30px rgba(15, 29, 43, 0.5);
+    /* With both submenus open the panel outgrows a short phone screen, and a
+       fixed panel can't be reached by scrolling the page — so it scrolls itself. */
+    max-height: calc(100vh - var(--masthead));
+    max-height: calc(100dvh - var(--masthead));
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
   .nav.is-open { transform: none; }
   .nav a { width: 100%; padding-block: 0.95rem; border-bottom: 1px solid var(--line); font-size: 1.05rem; }
@@ -1250,7 +1281,6 @@ strong { font-weight: 700; }
   }
   .nav__menu a[aria-current="page"] { color: var(--ember-deep); }
   .burger { display: block; }
-  .masthead__cta .phone-link span { display: none; }
   .masthead__cta .btn { display: none; }
   .feature { grid-template-columns: 1fr; }
   .feature__photo { max-width: 420px; }

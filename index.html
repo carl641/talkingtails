@@ -30,7 +30,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geo:ital@0;1&family=Karla:ital,wght@0,400..700;1,400..600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/styles.css?v=3">
+<link rel="stylesheet" href="/assets/css/styles.css?v=4">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -74,7 +74,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <a href="/training">Training</a>
+      <div class="nav__group">
+        <a class="nav__link" href="/training">Training</a>
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="training-menu" aria-label="Toggle Training submenu">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nav__menu" id="training-menu">
+          <a href="/day-train-program">Day Train Program</a>
+          <a href="/board-and-train">3 or 5-Day Board &amp; Train</a>
+          <a href="/group-classes">Group Classes</a>
+          <a href="/dog-obedience-training-murfreesboro-tn">Obedience Training</a>
+          <a href="/off-leash-dog-training-murfreesboro-tn">Off-Leash Training</a>
+        </div>
+      </div>
+
       <a href="/puppy-training-murfreesboro-tn">Puppy Training</a>
       <a href="/contact">Contact</a>
     </nav>
@@ -334,7 +347,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="card__index">03</p>
           <h3>Board &amp; Train</h3>
           <p>Your dog stays with us for five days of immersive, correction-focused training and daily socialization.</p>
-          <span class="card__link"><a class="textlink" href="/training#obedience">Learn more</a></span>
+          <span class="card__link"><a class="textlink" href="/board-and-train">Learn more</a></span>
         </article>
 
         <article class="card reveal" style="--delay:300ms">
@@ -345,7 +358,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="card__index">04</p>
           <h3>Group Classes</h3>
           <p>Graduate-level classes to generalize commands with real distractions, other dogs and new environments.</p>
-          <span class="card__link"><a class="textlink" href="/training#group">Learn more</a></span>
+          <span class="card__link"><a class="textlink" href="/group-classes">Learn more</a></span>
         </article>
       </div>
 
@@ -560,10 +573,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div>
         <h4>Programs</h4>
         <ul>
+          <li><a href="/day-train-program">Day Train Program</a></li>
+          <li><a href="/board-and-train">3 or 5-Day Board &amp; Train</a></li>
+          <li><a href="/group-classes">Group classes</a></li>
+          <li><a href="/dog-obedience-training-murfreesboro-tn">Obedience training</a></li>
+          <li><a href="/off-leash-dog-training-murfreesboro-tn">Off-leash training</a></li>
           <li><a href="/training#puppy">Puppy training</a></li>
-          <li><a href="/training#obedience">Obedience training</a></li>
           <li><a href="/training#private">Private lessons</a></li>
-          <li><a href="/training#group">Group classes</a></li>
           <li><a href="/training#behavior">Behavior solutions</a></li>
         </ul>
       </div>
