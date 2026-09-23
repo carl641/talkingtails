@@ -92,7 +92,7 @@ plain list and all content is visible (no reveal animations).
 
 ## Photography
 
-Six photos live in `assets/` and are placed like this:
+The photos in `assets/` are placed like this:
 
 | Photo | Where it appears |
 | --- | --- |
@@ -104,6 +104,8 @@ Six photos live in `assets/` and are placed like this:
 | `groupclass.jpg` / `teddy.jpg` / `tilteddog.jpg` | Also on the Group Classes, Board &amp; Train and Obedience pages respectively |
 | `Group-Class.avif` | Home "Group Classes" card &middot; `training.html#group` |
 | `why-us.webp` | Home "Our story" |
+| `puppy8-1400.webp` / `puppy7-1400.webp` | Puppy Roadmap &mdash; the Home Life and Real-World callouts. 1400px WebP cuts of `puppy8.jpg` and `puppy7.jpg` (82&nbsp;KB and 139&nbsp;KB against 1.7 and 1.9&nbsp;MB) |
+| `puppy1.jpg` &hellip; `puppy11.jpg` | Uploaded originals at full camera resolution (0.5&ndash;6.6&nbsp;MB each, up to 36 megapixels). None is placed directly; resize any that go on a page, as with the two above |
 
 The hero treatment lives in `styles.css` under *Photo hero*, entirely scoped to
 `.hero--photo` &mdash; the plain `.hero` rules are untouched, so the photo hero can
@@ -130,9 +132,10 @@ Four more CSS helpers (under *Photography*) carry the rest:
 
 Every `<img>` carries `alt`, intrinsic `width`/`height` (so nothing shifts as
 images load), `loading="lazy"` and `decoding="async"`. The exceptions are the
-four photos on the Puppy Roadmap, which are hotlinked from Unsplash rather than
-kept in `assets/`: they sit in boxes sized by CSS, so they carry no
-`width`/`height` and still can't shift the layout.
+two photos the Puppy Roadmap hotlinks from Unsplash (behind the pull quote and
+in the Communication callout), both free under the Unsplash License: they sit in
+boxes sized by CSS, so they carry no `width`/`height` and still can't shift the
+layout.
 
 ## Brand
 
@@ -176,12 +179,6 @@ All colors, fonts and spacing live in the `:root` block at the top of
      ~30&nbsp;KB the same way. Source files were left untouched.
    - The red matte baked into `why-us.webp` is a harder red than the brand
      `--ember` (`#f26224`). Fine as-is, but it is not a palette colour.
-   - `puppy-roadmap.html` hotlinks four Unsplash photos. Two of them (the
-     `plus.unsplash.com/premium_photo-…` URLs, on the Home Life and Real-World
-     callouts) are **Unsplash+** images, which need an Unsplash+ license to be
-     used; the other two are under the free Unsplash License. Before the page
-     is linked, license those two or swap in Talking Tails' own photos, ideally
-     saved into `assets/` like the rest.
 2. **Testimonials.** The four quotes on `index.html` are placeholder copy
    (marked with a comment). Replace them with verified Google/Facebook reviews
    and real attribution before publishing. The seven reviews on `trainers.html`
