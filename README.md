@@ -52,6 +52,7 @@ resolve identically at any URL depth. Canonical tags match the clean URLs:
 | `group-classes.html` | Group classes — how and where they run, why they matter, who can join (current clients only) |
 | `dog-obedience-training-murfreesboro-tn.html` | Local landing page — obedience training in Murfreesboro: approach, real-world proofing, the two programs that teach it |
 | `off-leash-dog-training-murfreesboro-tn.html` | Local landing page — off-leash training in Murfreesboro: fundamentals, how reliability is built, safety caveats, group-class progression |
+| `puppy-roadmap.html` | The Puppy Roadmap — long-form puppy guide: six milestones from home life to growing up, each with a tip and a caution, photo callouts to the puppy page. **Not linked yet** (see below) |
 | `reviews.html` | Live client reviews &mdash; a Trustindex widget pulling from the public review profiles |
 | `videos.html` | Video gallery (placeholder thumbnails ready for embeds) |
 | `contact.html` | Contact details, evaluation request form, what to expect |
@@ -76,6 +77,15 @@ the evaluation form at `#evaluation` &mdash; the target of both the page's *Book
 Your Free Evaluation* button and the masthead's *Free Evaluation* button. The
 bite-history and off-leash safety caveats sit in a `.note` box so they can't be
 skimmed past.
+
+`puppy-roadmap.html` is built but deliberately unlinked: nothing in the menu,
+the footer or `sitemap.xml` points to it, so it can only be reached at its URL,
+`/puppy-roadmap`. To publish it, add it to the nav on every page, the footer's
+Explore list and the sitemap. Its styles are the *Puppy roadmap* block at the
+end of `styles.css`, scoped to `.hero--roadmap` and `roadmap-*` classes. The
+script for its milestone bar (the row of links that follows the reader through
+the six milestones, and stands down on screens too narrow for it) sits inline
+at the foot of the page, since nothing else uses it.
 
 Everything degrades gracefully: with JavaScript disabled the nav collapses to a
 plain list and all content is visible (no reveal animations).
@@ -119,7 +129,10 @@ Four more CSS helpers (under *Photography*) carry the rest:
   block, capped at 420px once the block stacks on narrow screens.
 
 Every `<img>` carries `alt`, intrinsic `width`/`height` (so nothing shifts as
-images load), `loading="lazy"` and `decoding="async"`.
+images load), `loading="lazy"` and `decoding="async"`. The exceptions are the
+four photos on the Puppy Roadmap, which are hotlinked from Unsplash rather than
+kept in `assets/`: they sit in boxes sized by CSS, so they carry no
+`width`/`height` and still can't shift the layout.
 
 ## Brand
 
@@ -163,6 +176,12 @@ All colors, fonts and spacing live in the `:root` block at the top of
      ~30&nbsp;KB the same way. Source files were left untouched.
    - The red matte baked into `why-us.webp` is a harder red than the brand
      `--ember` (`#f26224`). Fine as-is, but it is not a palette colour.
+   - `puppy-roadmap.html` hotlinks four Unsplash photos. Two of them (the
+     `plus.unsplash.com/premium_photo-…` URLs, on the Home Life and Real-World
+     callouts) are **Unsplash+** images, which need an Unsplash+ license to be
+     used; the other two are under the free Unsplash License. Before the page
+     is linked, license those two or swap in Talking Tails' own photos, ideally
+     saved into `assets/` like the rest.
 2. **Testimonials.** The four quotes on `index.html` are placeholder copy
    (marked with a comment). Replace them with verified Google/Facebook reviews
    and real attribution before publishing. The seven reviews on `trainers.html`

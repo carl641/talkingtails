@@ -1576,3 +1576,427 @@ strong { font-weight: 700; }
 @media (max-width: 620px) {
   .people { grid-template-columns: 1fr; }
 }
+
+/* --- Puppy roadmap (puppy-roadmap.html) ---------------------------------- */
+/* A long-form guide: a navy hero, six milestone sections, a bar of links that
+   follows the reader through them, and photo callouts between milestones.
+   Everything is scoped to .hero--roadmap and roadmap-* classes, so none of it
+   reaches another page. */
+
+/* Hero — a navy variant of .hero that keeps its grid and .rise entrance. The
+   orange disc bleeds off the top-right corner; the faint ring sits low. */
+.hero--roadmap {
+  background: var(--ink);
+  color: var(--cream);
+  min-height: min(76vh, 640px);
+  display: grid;
+  align-items: center;
+  padding-block: clamp(4rem, 8vw, 6.5rem);
+}
+.hero--roadmap::before,
+.hero--roadmap::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.hero--roadmap::before {
+  width: 520px; height: 520px;
+  top: -170px; right: -180px;
+  background: var(--ember);
+}
+.hero--roadmap::after {
+  width: 260px; height: 260px;
+  right: 16%; bottom: -150px;
+  border: 2px solid rgba(251, 248, 245, 0.12);
+}
+.hero--roadmap > .shell { position: relative; z-index: 1; }
+.hero--roadmap .hero__grid {
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+  align-items: center;
+}
+.hero--roadmap h1 {
+  color: #fff;
+  font-size: clamp(3rem, 1.6rem + 5.2vw, 5.9rem);
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+}
+.hero--roadmap .wonk { color: var(--ember-lift); }
+.hero--roadmap .eyebrow { color: var(--ember-lift); }
+.hero--roadmap .eyebrow::before { background: var(--ember-lift); }
+.hero--roadmap .lede { color: rgba(251, 248, 245, 0.82); max-width: 42ch; }
+
+.roadmap-hero__card {
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.6rem, 2.6vw, 2.25rem);
+  box-shadow: 0 34px 60px -34px rgba(0, 0, 0, 0.6);
+  transform: rotate(2deg);
+}
+.roadmap-hero__stat {
+  font-family: var(--accent);
+  font-size: clamp(3rem, 2.2rem + 2.2vw, 4.25rem);
+  line-height: 1;
+  letter-spacing: 0.005em;
+  color: var(--ember);
+}
+.roadmap-hero__title {
+  margin-top: 1rem;
+  font-family: var(--display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.012em;
+}
+.roadmap-hero__title + p {
+  margin-top: 0.6rem;
+  font-size: 0.97rem;
+  line-height: 1.6;
+  color: var(--ink-tint);
+}
+
+/* Four principles under the intro */
+.roadmap-principles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: clamp(2.25rem, 4vw, 3rem);
+}
+.roadmap-principles li {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 1.35rem 1.4rem 1.45rem;
+  font-size: 0.97rem;
+  line-height: 1.55;
+  color: var(--ink-tint);
+}
+.roadmap-principles strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+
+/* Pull quote — the orange field runs on into a photo on the right, which
+   stays on the right at every width. */
+.roadmap-quote {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  min-height: 18rem;
+  background: var(--ember);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.roadmap-quote__copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(1.75rem, 4vw, 2.75rem) clamp(0.75rem, 2vw, 1.5rem) clamp(1.75rem, 4vw, 2.75rem) clamp(1.5rem, 4vw, 2.75rem);
+}
+/* Karla's mark, not Geo's, which is two straight strokes and reads as "//". */
+.roadmap-quote__mark {
+  font-family: var(--display);
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 0.75;
+  color: rgba(255, 255, 255, 0.9);
+}
+.roadmap-quote p {
+  max-width: 26ch;
+  font-family: var(--display);
+  font-size: clamp(1.3rem, 1rem + 1.2vw, 1.95rem);
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.012em;
+}
+.roadmap-quote__photo { position: relative; }
+.roadmap-quote__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Fades the orange into the photo rather than meeting it at a hard edge. */
+.roadmap-quote__photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;                 /* the img follows this in the DOM, so it needs saying */
+  background: linear-gradient(90deg,
+    var(--ember) 0%, rgba(242, 98, 36, 0.9) 12%, rgba(242, 98, 36, 0.55) 30%,
+    rgba(242, 98, 36, 0.16) 50%, rgba(242, 98, 36, 0) 70%);
+}
+
+/* Six-card index to the milestones */
+.roadmap-index { padding-top: 0; }   /* the intro above already closes on its own padding */
+.roadmap-index__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+.roadmap-index__list a {
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr);
+  gap: 1.1rem;
+  height: 100%;
+  padding: 1.45rem 1.6rem 1.55rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--ink-tint);
+  transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease), border-color 0.45s var(--ease);
+}
+.roadmap-index__list a:hover {
+  transform: translateY(-4px);
+  border-color: transparent;
+  box-shadow: 0 26px 50px -30px rgba(15, 29, 43, 0.45);
+}
+.roadmap-index__list b {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 1.12rem;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.roadmap-index__num {
+  display: grid;
+  place-items: center;
+  width: 2.75rem; height: 2.75rem;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--ember-lift);
+  font-family: var(--accent);
+  font-size: 1.2rem;
+  letter-spacing: 0.02em;
+}
+
+/* Milestone bar. Fixed under the masthead, so it never takes up room in the
+   page; the script at the foot of puppy-roadmap.html shows it (.is-visible)
+   only while the reader is among the milestones, and sets .is-cramped when
+   the six links won't fit on one line, which keeps it off phones. Without
+   JavaScript it never appears. */
+.roadmap-jump {
+  position: fixed;
+  top: calc(var(--masthead) + 1px);   /* just under the masthead's hairline */
+  left: 0; right: 0;
+  z-index: 90;                        /* under the masthead, so its menus open over the bar */
+  background: rgba(255, 255, 255, 0.94);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 14px 30px -24px rgba(15, 29, 43, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), visibility 0.3s;
+}
+.roadmap-jump.is-visible { opacity: 1; visibility: visible; transform: none; }
+.roadmap-jump.is-cramped { display: none; }
+.roadmap-jump__inner {
+  display: flex;
+  gap: 0.6rem;
+  padding-block: 0.7rem;      /* also room for the links' focus rings */
+}
+.roadmap-jump a {
+  flex: 1 1 0;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  color: var(--ink);
+  transition: background 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.roadmap-jump a:hover { border-color: var(--ink); }
+.roadmap-jump a[aria-current="true"] { background: var(--ink); border-color: var(--ink); color: var(--cream); }
+
+/* Milestones */
+.roadmap-stages { padding-bottom: clamp(3.5rem, 7vw, 6rem); }
+.roadmap-stage {
+  padding-block: clamp(2.75rem, 5vw, 3.75rem);
+  border-top: 1px solid var(--line);
+  /* Clears the milestone bar on anchor jumps. The script sets the bar's
+     height while the bar can show, and nothing otherwise. */
+  scroll-margin-top: var(--roadmap-bar, 0px);
+}
+.roadmap-stage:last-child { border-bottom: 1px solid var(--line); }
+.roadmap-stage__grid {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2.5rem);
+  align-items: start;
+}
+.roadmap-stage__marker {
+  font-family: var(--accent);
+  font-size: 2.1rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--ember);
+}
+.roadmap-stage__marker span {
+  display: block;
+  font-family: var(--body);
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.8;           /* same line box as the eyebrow beside it, so the two labels align */
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-tint);
+}
+.roadmap-stage__marker b { font-weight: 400; }   /* Geo ships a single weight */
+.roadmap-stage__head .eyebrow { margin-bottom: 1.1rem; }
+.roadmap-stage__head h3 {
+  font-size: clamp(1.75rem, 1.25rem + 1.8vw, 2.6rem);
+  line-height: 1.1;
+  letter-spacing: -0.022em;
+}
+.roadmap-stage__head .lede { margin-top: 1rem; max-width: 60ch; }
+.roadmap-stage__body {
+  margin-top: 1.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--line);
+}
+.roadmap-stage__body h4 {
+  margin-bottom: 1rem;
+  font-family: var(--body);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.roadmap-list { display: grid; gap: 0.6rem; }
+.roadmap-list li { position: relative; padding-left: 1.6rem; }
+.roadmap-list li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.66em;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ember);
+}
+
+/* The practical tip that closes each milestone, with its caution beneath */
+.roadmap-tip {
+  margin-top: 1.75rem;
+  padding: clamp(1.25rem, 2.5vw, 1.6rem) clamp(1.25rem, 2.5vw, 1.75rem);
+  background: var(--sand);
+  border-radius: var(--radius-lg);
+}
+.roadmap-tip h4 { margin-bottom: 0.5rem; color: var(--ember-deep); }
+.roadmap-tip > p:first-of-type { padding-bottom: 1rem; border-bottom: 1px solid var(--line); }
+.roadmap-tip__watch {
+  margin-top: 1rem;
+  padding: 0.15rem 0 0.15rem 0.95rem;
+  border-left: 3px solid var(--ember);
+  font-size: 0.95rem;
+  color: var(--ink-tint);
+}
+.roadmap-tip__watch b { color: var(--ink); }
+
+/* Photo + navy callout at the foot of milestones 01, 03 and 05. The photo box
+   is sized by the grid, not the image, so the hotlinked photos carry no
+   width/height and still can't shift the layout as they load. */
+.roadmap-cta {
+  display: grid;
+  grid-template-columns: 34% minmax(0, 1fr);
+  gap: 1.5rem;
+  margin-top: clamp(2.25rem, 4vw, 3rem);
+}
+.roadmap-cta__photo {
+  position: relative;
+  min-height: 15rem;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--sand);
+}
+.roadmap-cta__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.roadmap-cta__box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(1.6rem, 3vw, 2.25rem);
+  background: var(--ink);
+  border-radius: var(--radius-lg);
+  color: #fff;
+}
+.roadmap-cta__title {
+  margin-bottom: 0.55rem;
+  font-family: var(--display);
+  font-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.4rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.012em;
+}
+.roadmap-cta__box .btn { margin-top: 1.4rem; }
+
+/* At a glance */
+.roadmap-glance { background: var(--sand); }
+.roadmap-glance__card {
+  padding: 0.6rem clamp(1.5rem, 3vw, 2.25rem);
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 30px 60px -36px rgba(15, 29, 43, 0.4);
+}
+.roadmap-glance__card div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding-block: 1.1rem;
+  border-bottom: 1px solid var(--line);
+}
+.roadmap-glance__card div:last-child { border-bottom: 0; }
+.roadmap-glance__card dt { font-weight: 700; color: var(--ink); }
+.roadmap-glance__card dd { text-align: right; color: var(--ink-tint); }
+
+@media (max-width: 1000px) {
+  .roadmap-principles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 860px) {
+  .hero--roadmap { min-height: 0; }
+  .hero--roadmap .hero__grid { grid-template-columns: 1fr; }
+  .roadmap-hero__aside { display: none; }
+  /* A smaller disc tucked into the corner, clear of the heading. */
+  .hero--roadmap::before { width: 260px; height: 260px; top: -150px; right: -130px; }
+  .hero--roadmap::after { right: -70px; bottom: -170px; }
+
+  .roadmap-index__list { grid-template-columns: 1fr; }
+  .roadmap-stage__grid { grid-template-columns: 1fr; gap: 1.1rem; }
+  .roadmap-stage__marker { display: flex; align-items: baseline; gap: 0.7rem; font-size: 1.6rem; }
+}
+
+@media (max-width: 620px) {
+  .roadmap-principles { grid-template-columns: 1fr; }
+  .roadmap-quote { grid-template-columns: minmax(0, 1fr) 38%; min-height: 0; }
+  .roadmap-quote__copy { padding: 1.75rem 0.5rem 1.75rem 1.5rem; }
+  .roadmap-quote__mark { display: none; }
+  .roadmap-quote p { font-size: 1.2rem; }
+  .roadmap-cta { grid-template-columns: 1fr; gap: 1rem; }
+  .roadmap-cta__photo { min-height: 13.5rem; }
+}
+
+@media print {
+  .roadmap-jump { display: none; }
+}
