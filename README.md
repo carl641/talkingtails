@@ -47,6 +47,11 @@ resolve identically at any URL depth. Canonical tags match the clean URLs:
 | `trainers.html` | Trainers &amp; staff roster with expandable bios, plus verified Google reviews |
 | `training.html` | The four programs in detail, behavior solutions, FAQ |
 | `puppy-training-murfreesboro-tn.html` | Local landing page — puppy training in Murfreesboro/Rutherford County: curriculum, process, service area, puppy FAQ, `Service` + `FAQPage` schema |
+| `day-train-program.html` | Day Train Program — the three steps (day train, turnover lesson, private lessons), how the day runs, private lessons, who it's for |
+| `board-and-train.html` | 3 or 5-Day Board &amp; Train — the three steps (days with the team, go-home lesson, lifetime support), nights with Teddy, who it's for |
+| `group-classes.html` | Group classes — how and where they run, why they matter, who can join (current clients only) |
+| `dog-obedience-training-murfreesboro-tn.html` | Local landing page — obedience training in Murfreesboro: approach, real-world proofing, the two programs that teach it |
+| `off-leash-dog-training-murfreesboro-tn.html` | Local landing page — off-leash training in Murfreesboro: fundamentals, how reliability is built, safety caveats, group-class progression |
 | `reviews.html` | Live client reviews &mdash; a Trustindex widget pulling from the public review profiles |
 | `videos.html` | Video gallery (placeholder thumbnails ready for embeds) |
 | `contact.html` | Contact details, evaluation request form, what to expect |
@@ -62,6 +67,15 @@ assets/js/main.js       mobile nav, sticky-header hairline, scroll reveals,
                         newsletter dialog
 ```
 
+The last five are the **Training** dropdown in the main menu (About's dropdown
+works the same way: `nav__group`, with `is-current` on the group and
+`aria-current="page"` on the sub-link when one of its pages is open). Each is
+built from the client's copy, carries a `Service` JSON-LD block, and closes on
+the evaluation form at `#evaluation` &mdash; the target of both the page's *Book
+Your Free Evaluation* button and the masthead's *Free Evaluation* button. The
+bite-history and off-leash safety caveats sit in a `.note` box so they can't be
+skimmed past.
+
 Everything degrades gracefully: with JavaScript disabled the nav collapses to a
 plain list and all content is visible (no reveal animations).
 
@@ -72,9 +86,11 @@ Six photos live in `assets/` and are placed like this:
 | Photo | Where it appears |
 | --- | --- |
 | `dogfield.jpg` | Home hero &mdash; full-bleed background |
-| `Hybrid-Training-Program.avif` | Home "Hybrid Training" card &middot; `training.html#private` &middot; About intro |
+| `dogfield-1600.webp` | Off-leash page &mdash; a 1600px WebP cut of `dogfield.jpg` (228&nbsp;KB against 3.6&nbsp;MB), so a section photo doesn't cost what the hero does |
+| `Hybrid-Training-Program.avif` | Home "Hybrid Training" card &middot; `training.html#private` &middot; About intro &middot; Day Train page &middot; Obedience page program card |
 | `Puppy-Lesson.webp` | Home "Puppy Training" card &middot; `training.html#puppy` &middot; Contact "what to expect" |
-| `Board-Train.avif` | Home "Board &amp; Train" card &middot; `training.html#obedience` |
+| `Board-Train.avif` | Home "Board &amp; Train" card &middot; `training.html#obedience` &middot; Board &amp; Train page &middot; Obedience page program card |
+| `groupclass.jpg` / `teddy.jpg` / `tilteddog.jpg` | Also on the Group Classes, Board &amp; Train and Obedience pages respectively |
 | `Group-Class.avif` | Home "Group Classes" card &middot; `training.html#group` |
 | `why-us.webp` | Home "Our story" |
 
@@ -181,7 +197,7 @@ All colors, fonts and spacing live in the `:root` block at the top of
 
    | Embed | ID | Where |
    | --- | --- | --- |
-   | New Contact Form | `wGkYu7T4TZUIMgLc8u9G` | `index.html` (`#evaluation`), `contact.html` |
+   | New Contact Form | `wGkYu7T4TZUIMgLc8u9G` | `contact.html`; at `#evaluation` on `index.html`, the puppy page and the five Training-dropdown pages |
    | Free Assessment Quiz (survey) | `1FRYajBA2KiUE9K7U6gh` | `quiz.html` |
    | Newsletter Form | `ty8lF2uh9sbTtyc4VsZi` | footer dialog, every page |
 
@@ -238,6 +254,12 @@ nothing; the newsletter is the only feature on the site that needs it.
 
 - Skip link, visible focus rings, labelled form fields, `aria-current` on the
   active nav item, `aria-expanded` on the mobile menu toggle.
+- Two dropdown chevrons leave the masthead about 100px short of one line below
+  1000px, so there the phone link shows only its icon. The number is visually
+  hidden rather than `display: none`, so it stays the link's accessible name
+  &mdash; on phones too, where it used to be removed outright.
+- The mobile menu panel is capped at the screen height and scrolls itself: with
+  both submenus open it runs to ~750px, past the bottom of a short phone.
 - One `<h1>` per page, unique `<title>` and meta description, Open Graph tags,
   `LocalBusiness` structured data on the home page.
 - `prefers-reduced-motion` disables every animation and reveal.
