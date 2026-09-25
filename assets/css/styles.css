@@ -1300,6 +1300,13 @@ strong { font-weight: 700; }
   :root { --masthead: 78px; }
   .brand__logo { height: 54px; }
   .footer .brand__logo { height: 84px; }
+  /* One paragraph size on phones. Component rules (.card p, .lede, .review p,
+     and so on) each set their own size, so this has to outrank all of them.
+     Some <p>s are labels or display type rather than body copy (eyebrows,
+     breadcrumbs, big numbers, card titles, the pull quote) and keep their own. */
+  p:not(.eyebrow, .crumb, .card__index, .feature__label, .summary__label,
+        .roadmap-hero__stat, .roadmap-hero__title, .roadmap-stage__marker,
+        .roadmap-cta__title, .roadmap-quote p) { font-size: 1rem !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {
