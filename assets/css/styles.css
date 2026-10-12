@@ -1036,6 +1036,52 @@ strong { font-weight: 700; }
   padding: clamp(1.25rem, 2.5vw, 1.75rem);
 }
 
+/* --- Pricing ------------------------------------------------------------ */
+/* Program cards on /membership: price on top, highlights as a list, then the
+   "why choose it" line pinned to the bottom so the three cards line up. */
+.card .price {
+  font-family: var(--display);
+  font-size: clamp(2.2rem, 1.8rem + 1.6vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--ember-deep);
+  margin-bottom: 1rem;
+}
+.card .price small {
+  font-family: var(--body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--ink-tint);
+}
+.card .card__label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-top: 1.4rem;
+}
+.card ul { margin-top: 0.8rem; display: grid; gap: 0.55rem; }
+.card li { position: relative; padding-left: 1.6rem; font-size: 0.97rem; color: var(--ink-tint); }
+.card li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.66em;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ember);
+}
+.card__why { margin-top: auto; padding-top: 1.6rem; }
+.card__why .card__label { margin-top: 0; }
+.card__why p { margin-top: 0.6rem; }
+.fineprint { font-size: 0.85rem; color: var(--ink-tint); max-width: 80ch; }
+.grid--pricing { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 1000px) {
+  .grid--pricing { grid-template-columns: 1fr; }
+}
+
 /* --- Info list ---------------------------------------------------------- */
 .info { display: grid; gap: 0; }
 .info__row {
