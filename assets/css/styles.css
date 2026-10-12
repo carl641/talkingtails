@@ -1055,6 +1055,25 @@ strong { font-weight: 700; }
   letter-spacing: 0;
   color: var(--ink-tint);
 }
+/* The membership price under its heading: the one number on the page that
+   should read from across the room. */
+.price-hero {
+  font-family: var(--display);
+  font-size: clamp(3.4rem, 2.6rem + 3.6vw, 5.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ember-deep);
+  margin-top: 1.4rem;
+}
+.price-hero small {
+  font-family: var(--body);
+  font-size: 0.32em;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--ink-tint);
+  margin-left: 0.15em;
+}
 .card .card__label {
   font-size: 0.72rem;
   font-weight: 700;
@@ -1352,7 +1371,7 @@ strong { font-weight: 700; }
      breadcrumbs, big numbers, card titles, the pull quote) and keep their own. */
   p:not(.eyebrow, .crumb, .card__index, .feature__label, .summary__label,
         .roadmap-hero__stat, .roadmap-hero__title, .roadmap-stage__marker,
-        .roadmap-cta__title, .roadmap-quote p) { font-size: 1rem !important; }
+        .roadmap-cta__title, .roadmap-quote p, .price, .price-hero, .card__label) { font-size: 1rem !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {
