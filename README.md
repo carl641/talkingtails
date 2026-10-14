@@ -47,8 +47,9 @@ resolve identically at any URL depth. Canonical tags match the clean URLs:
 | `trainers.html` | Trainers &amp; staff roster with expandable bios, plus verified Google reviews |
 | `training.html` | The four programs in detail, behavior solutions, FAQ |
 | `puppy-training-murfreesboro-tn.html` | Local landing page — puppy training in Murfreesboro/Rutherford County: curriculum, process, service area, puppy FAQ, `Service` + `FAQPage` schema |
-| `day-train-program.html` | Day Train Program — the three steps (day train, turnover lesson, private lessons), how the day runs, private lessons, who it's for |
-| `board-and-train.html` | 3 or 5-Day Board &amp; Train — the three steps (days with the team, go-home lesson, lifetime support), nights with Teddy, who it's for |
+| `day-train-program.html` | Foundation Program (URL kept as `/day-train-program`) — the three steps (day train, turnover lesson, private lessons), how the day runs, private lessons, who it's for |
+| `board-and-train.html` | Board &amp; Train — the three steps (days with the team, go-home lesson, ongoing support and group classes), nights with Teddy, who it's for |
+| `private-lessons.html` | Private Lessons Program — four one-on-one lessons, virtual support, two months of membership with group classes, who it's for |
 | `group-classes.html` | Group classes — how and where they run, why they matter, who can join (current clients only) |
 | `dog-obedience-training-murfreesboro-tn.html` | Local landing page — obedience training in Murfreesboro: approach, real-world proofing, the two programs that teach it |
 | `off-leash-dog-training-murfreesboro-tn.html` | Local landing page — off-leash training in Murfreesboro: fundamentals, how reliability is built, safety caveats, group-class progression |
