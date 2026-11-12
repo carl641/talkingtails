@@ -18,6 +18,7 @@
   --cream:      #fbf8f5;
   --sand:       #f2ece5;
   --paper:      #ffffff;
+  --form-dark:  #231F20;         /* ground behind the white-text contact form only */
 
   --line:       rgba(15, 29, 43, 0.12);
   --line-light: rgba(251, 248, 245, 0.18);
@@ -945,7 +946,7 @@ strong { font-weight: 700; }
    pixel height onto the iframe, and under border-box that padding would eat
    into the form's own scroll area. */
 .embed__frame-pad {
-  background: #231F20;
+  background: var(--form-dark);
   padding: 25px;
   border-radius: var(--radius);
 }
@@ -961,7 +962,17 @@ strong { font-weight: 700; }
   max-width: none !important;
   border: 0;
   border-radius: var(--radius);
+  /* Every hosted form sits on a solid white backdrop by default (newsletter,
+     quiz survey), so a form styled with dark text always has a light ground
+     under it no matter what section or dialog it lands in. */
+  background: var(--paper);
+  color-scheme: light;
 }
+/* The white-text contact form is the one exception: it gets the dark ground,
+   and only inside its .embed__frame-pad wrapper. Keeping the dark backdrop
+   tied to that wrapper means the white-on-dark styling stays where the
+   contact form is and never reaches the newsletter or quiz frames. */
+.embed__frame-pad .embed__frame { background: var(--form-dark); }
 /* form_embed.js sets the real height once the frame reports it — these keep
    the layout from collapsing in the meantime. */
 .embed--form .embed__frame { min-height: 808px; }
