@@ -30,6 +30,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="apple-touch-icon" href="/assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.trustindex.io" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geo:ital@0;1&family=Karla:ital,wght@0,400..700;1,400..600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/styles.css?v=11">
 <script type="application/ld+json">
@@ -235,8 +236,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- REVIEWS ------------------------------------------------------------->
-  <!-- Review text supplied by the client. Confirm each name and quote before
-       launch, and add the live Google review link when it's available. -->
+  <!-- Live Trustindex feed, the same account as reviews.html
+       (c8a3b1a81269265deb067b60d7b). The loader injects the widget directly
+       after its own <script> tag, so the tag must stay here in the body. What
+       it shows is configured in the Trustindex account, not on this page.
+       The "260+" figure is client-supplied; keep it in step with the stats
+       block further down and the other pages that quote it. -->
   <section class="section section--tight">
     <div class="shell">
       <div class="reveal center measure">
@@ -246,63 +251,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="lede">Trusted by dog owners across Murfreesboro for real results and better behavior.</p>
         <div class="rating">
           <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <span class="rating__text">5.0 &mdash; 288+ verified Google reviews</span>
+          <span class="rating__text">5.0 &mdash; 260+ verified Google reviews</span>
         </div>
       </div>
       <div class="spacer"></div>
 
-      <div class="grid grid--4">
-        <article class="review reveal">
-          <div class="review__head">
-            <span class="review__avatar" aria-hidden="true">K</span>
-            <span>
-              <span class="review__name">Kortnie Schmidtke</span>
-              <span class="review__src">Posted on Google</span>
-            </span>
-          </div>
-          <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <p>&ldquo;When picking a dog trainer it's important to remember the time and money you invest now dictates the next 8&ndash;13 years of your life. Teddy makes every session so productive and I can see results instantly. I would recommend Talking Tails to anyone with a dog!&rdquo;</p>
-          <p class="review__verified">&#10003; Verified Google review</p>
-        </article>
+      <div class="ti-wrap">
+        <script defer async src='https://cdn.trustindex.io/loader.js?c8a3b1a81269265deb067b60d7b'></script>
+      </div>
 
-        <article class="review reveal" style="--delay:100ms">
-          <div class="review__head">
-            <span class="review__avatar" aria-hidden="true">M</span>
-            <span>
-              <span class="review__name">Megan H.</span>
-              <span class="review__src">Posted on Google</span>
-            </span>
-          </div>
-          <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <p>&ldquo;Teddy was amazing to work with. We started seeing real progress and better communication with our dog within the first few sessions. Highly recommend Talking Tails to anyone considering training.&rdquo;</p>
-          <p class="review__verified">&#10003; Verified Google review</p>
-        </article>
+      <noscript>
+        <div class="summary">
+          <p class="summary__label">Reviews need JavaScript</p>
+          <ul>
+            <li>Our live reviews load from Trustindex, which needs JavaScript switched on.</li>
+            <li>Turn it on and reload, or read the reviews we've quoted on <a href="/trainers#reviews">our trainers page</a>.</li>
+          </ul>
+        </div>
+      </noscript>
 
-        <article class="review reveal" style="--delay:200ms">
-          <div class="review__head">
-            <span class="review__avatar" aria-hidden="true">J</span>
-            <span>
-              <span class="review__name">Jason B.</span>
-              <span class="review__src">Posted on Google</span>
-            </span>
-          </div>
-          <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <p>&ldquo;The training has helped our family so much. Our dog is more confident, obedient and easier to manage. The team is professional and truly invested in your dog's success.&rdquo;</p>
-          <p class="review__verified">&#10003; Verified Google review</p>
-        </article>
-
-        <article class="review reveal" style="--delay:300ms">
-          <div class="review__head">
-            <span class="review__avatar" aria-hidden="true">A</span>
-            <span>
-              <span class="review__name">Ashley R.</span>
-              <span class="review__src">Posted on Google</span>
-            </span>
-          </div>
-          <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <p>&ldquo;Highly recommend Talking Tails. Professional, patient, and the results speak for themselves. Our dog is a completely different companion after just a few sessions.&rdquo;</p>
-          <p class="review__verified">&#10003; Verified Google review</p>
-        </article>
+      <div class="spacer-sm"></div>
+      <div class="center">
+        <a class="btn btn--ghost" href="/reviews">Read all 260+ reviews</a>
       </div>
     </div>
   </section>
@@ -519,7 +489,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="stats reveal">
         <div><b>500+</b><span>Happy dogs trained</span></div>
         <div><b>1000+</b><span>Sessions completed</span></div>
-        <div><b>288+</b><span>Five-star reviews</span></div>
+        <div><b>260+</b><span>Five-star reviews</span></div>
         <div><b>20+</b><span>Years of experience</span></div>
       </div>
     </div>

@@ -990,7 +990,7 @@ strong { font-weight: 700; }
 }
 
 /* --- Third-party review widget ------------------------------------------ */
-/* Trustindex on reviews.html. The widget arrives fully styled by its own
+/* Trustindex on reviews.html and the home page. The widget arrives fully styled by its own
    stylesheet and is cross-origin, so nothing here reaches inside it; all this
    wrapper does is hold a block of space open until the widget lands, so the
    sections below it don't jump down the page when it does.
