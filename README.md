@@ -180,15 +180,14 @@ All colors, fonts and spacing live in the `:root` block at the top of
      ~30&nbsp;KB the same way. Source files were left untouched.
    - The red matte baked into `why-us.webp` is a harder red than the brand
      `--ember` (`#f26224`). Fine as-is, but it is not a palette colour.
-2. **Testimonials.** The four quotes on `index.html` are placeholder copy
-   (marked with a comment). Replace them with verified Google/Facebook reviews
-   and real attribution before publishing. The seven reviews on `trainers.html`
+2. **Testimonials.** The home page review section is the live Trustindex
+   widget (see below), not hand-copied quotes. The seven reviews on `trainers.html`
    are client-supplied from the live Google profile; the two Google links on
-   that page point at `#` and need the real review URL. Note the review count
-   differs between pages — `trainers.html` says 260 (client copy), `index.html`
-   says 288+. Pick one number.
+   that page point at `#` and need the real review URL. The review count is
+   260+ everywhere it's quoted (`index.html`, `membership.html`,
+   `puppy-training-murfreesboro-tn.html`; `trainers.html` says 260).
 
-   `reviews.html` is the exception and needs none of the above: it renders a
+   `reviews.html` and the home page need none of the above: both render a
    **Trustindex** widget (account `c8a3b1a81269265deb067b60d7b`) that pulls the
    reviews live, so nothing there is hand-copied and nothing goes stale. The
    loader inserts the widget immediately after its own `<script>` tag, which is
@@ -200,7 +199,7 @@ All colors, fonts and spacing live in the `:root` block at the top of
    Two things were deliberately left off that page. No review count or star
    average in the surrounding copy, because the widget already carries the live
    figures and a hardcoded number would drift out of date and contradict them —
-   which is the same problem as the 260-vs-288 mismatch above. And no
+   which is the same problem as keeping the 260+ figure current elsewhere. And no
    `AggregateRating` JSON-LD, because the widget emits its own review markup;
    a hand-written second copy would duplicate it, and self-serving rating markup
    on your own site is what Google's review-snippet guidelines exclude anyway.
