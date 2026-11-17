@@ -1447,7 +1447,9 @@ strong { font-weight: 700; }
   margin-top: 1.4rem;
 }
 .stars { color: var(--ember); letter-spacing: 0.16em; font-size: 1.05rem; }
-.rating__text { font-weight: 700; font-size: 0.92rem; }
+.rating { gap: 0.6rem 1.4rem; }
+.rating .stars { font-size: 2.1rem; }
+.rating__text { font-weight: 700; font-size: 1.84rem; line-height: 1.2; text-align: center; }
 .review {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
